@@ -1,0 +1,64 @@
+.container-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between; /* chia logo - search - menu */
+    padding: 0 0 0 20px; /* bỏ padding-top */
+    /* background-color: #f5f5f5; màu nền tùy chọn */
+}
+
+.logo-header {
+    background-color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    display: inline-block;  /* border ôm chữ */
+    padding: 2px 6px;       /* khoảng thở trong border */
+    margin-top: 10px;       /* cả khối cách top 10px */
+    flex: unset;            /* bỏ chiếm chỗ flex */
+}
+.search-header {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.search-header input {
+    width: 30%; /* độ rộng khung search */
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black; /* chữ trong search màu đen */
+}
+
+.menu-header {
+    top: 0px;
+    border: 1px solid #ccc;
+    padding: 10px 20px 10px 30px; /* tăng padding-left */
+    border-radius: 0 0 0 50px;
+    display: flex;
+    gap: 15px;
+}
+.menu-header a{
+    text-decoration: none;
+    color: black;
+}
+.menu-header > div.active {
+    text-decoration: underline;  /* luôn gạch chân */
+    font-weight: bold;           /* tuỳ chọn: làm đậm hơn */
+}
+
+
+.menu-header > div {
+    display: inline-block;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.menu-header > div:hover {
+    background-color: transparent; /* bỏ nền */
+    text-decoration: underline;    /* gạch chân */
+    border-radius: 0;              /* không cần bo góc nữa */
+}
+

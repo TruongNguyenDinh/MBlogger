@@ -1,0 +1,51 @@
+body,html{
+    margin: 0;
+    padding: 0;
+}
+main {
+    display: flex;
+    justify-content: space-between; /* chia 2 cột */
+    gap: 20px; /* khoảng cách giữa feeds và news */
+    padding-top: 10px;
+    height: calc(100vh - 60px); /* toàn màn hình trừ header */
+}
+
+/* feeds bên trái */
+.feeds-side-home {
+    flex: 3;                 /* rộng hơn news */
+    border: 1px solid #ccc;
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    max-height: 100%;        /* chiếm hết chiều cao cột */
+    overflow-y: auto;        /* hiện cuộn dọc khi nhiều post */
+}
+
+/* news bên phải */
+.news-side-home {
+    flex: 1;                 /* hẹp hơn feeds */
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;  /* xếp dọc: title trên - content dưới */
+    overflow: hidden; /* tránh tràn */
+}
+
+.title-news {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* ngăn cách với content */
+    text-align: center;
+}
+
+.content-news {
+    padding: 10px;
+    flex: 1;                  /* chiếm phần còn lại */
+    display: block;
+    flex-direction: column;   /* xếp dọc */
+    gap: 10px;
+    overflow-y: auto;         /* cuộn dọc khi nhiều */
+}

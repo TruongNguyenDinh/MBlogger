@@ -1,0 +1,343 @@
+body,html{
+    margin: 0;
+    padding: 0;
+}
+main {
+  position: relative;       /* để news-scene_more định vị theo main */
+  height: calc(100vh - 55px); /* toàn màn hình trừ header */
+  overflow-y: auto;
+}
+
+.news-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.news-card img {
+  width: 100%;
+  height: 200px;           /* cố định chiều cao cho ô */
+  object-fit: cover;       /* ảnh lấp đầy ô, cắt bớt nếu không vừa */
+  border-radius: 4px;
+}
+
+.news-modal {
+display: none;
+  position: relative;   /* để Back button bám theo khung modal */
+  padding: 50px 20px 20px; /* chừa khoảng trống cho nút */
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+/* Tab "who-post" */
+#who-post {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-bottom: none; /* nối liền với content bên dưới */
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  font-weight: bold;
+  cursor: default;
+  position: relative;
+  top: 1px; /* để ăn khớp với viền #news-detail */
+}
+
+/* Khung nội dung chính */
+#news-detail {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 0 6px 6px 6px; /* bo góc trừ phía trên trái/phải đã có who-post */
+  min-height: 150px;
+  background: #fafafa;
+}
+#backBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#backBtn:hover {
+  background: #eaeaea;
+}
+
+
+.news-scene_more {
+  position: fixed;
+  top: 50px;      /* cách mép trên */
+  right: 30px;    /* cách mép phải */
+  cursor: pointer;
+}
+.news-scene_more_toglebtn {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.news-scene_more .group_btns {
+  padding: 5px 10px;
+  position: absolute;
+  top: 100%;   /* nằm ngay dưới toglebtn */
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  display: none; /* mặc định ẩn */
+  border-radius: 10px;
+}
+.news-scene_more .news-scene_more_toglebtn:hover,
+.news-scene_more .group_btns:hover {
+  background: #eaeaea;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+/* ------------------------------Recruitment--------------------------------*/
+.recuit-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 90px); /* toàn màn hình trừ header */
+}
+
+.re-left {
+    flex: 5; /* cột trái chiếm ít */
+    background: #f4f4f4;
+    border-right: 1px solid #ccc;
+}
+
+.re-right {
+    flex: 1; /* cột phải chiếm nhiều */
+    background: #fff;
+}
+.re-header {
+    display: flex;
+    justify-content: space-between; /* trái & phải */
+    align-items: center;            /* căn giữa theo chiều dọc */
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.re-header_left {
+    display: flex;
+}
+
+.re-raw,
+.re-preview {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: none;  /* tạo cảm giác tab */
+    background: #f9f9f9;
+}
+
+.re-raw.active,
+.re-preview.active {
+    background: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid #fbfbfb; /* tab đang chọn nổi lên */
+}
+/* Right */
+.re-right {
+    display: flex;
+    flex-direction: column;   /* chia theo cột */
+    height: 100%;             /* hoặc 100vh nếu muốn full màn hình */
+    border-left: 1px solid #ccc;
+    background: #f9f9f9;
+}
+.re-title-mode{
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+.re-right_top {
+    flex: 1;                  /* chiếm hết phần còn lại */
+    padding: 10px;
+}
+
+.re-right_bottom {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    text-align: right;        /* căn phải nút POST */
+}
+.re-right_bottom button {
+    width: 100%;
+    padding: 12px;        /* to cho dễ bấm */
+    font-size: 16px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.re-right_bottom button:hover {
+    background: #0056b3;
+}
+.re-add-banner {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+    background: #f9f9f9;
+    margin-top: 15px; /* 👈 cách title 15px */
+}
+.re-add-banner:hover {
+    background: #f1f1f1;
+}
+.re-add-banner img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+.topicInput {
+  position: relative;
+  width: 97%;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+}
+
+.topicInput input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.topicInput:hover::after {
+  content: "Each topic is separated by a comma(,).";
+  position: absolute;
+  top: 100%; /* nằm dưới input */
+  left: 0;
+  font-size: 15px;
+  color: #666;
+  background: #f9f9f9;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.topicInput input:focus {
+  outline: none;
+  border: 1px solid #0056b3;
+}
+
+/* Left */
+.re-content {
+    margin-top: 10px;
+}
+
+.re-content {
+    flex: 1;                /* nếu nằm trong flex container thì sẽ chiếm hết */
+    height: 90%;           /* cho container có chiều cao */
+    display: flex;
+}
+#previewBox {
+  display: none;
+  width: 100%;
+  height: 100%;
+  line-height: 1.6;          /* 👈 chỉnh line-height chung cho toàn bộ */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  overflow-y: auto;
+}
+
+/* Reset heading để giống text thường */
+#previewBox h1,
+#previewBox h2,
+#previewBox h3,
+#previewBox h4,
+#previewBox h5,
+#previewBox h6 {
+  margin: 8px 0 4px 0;   /* top nhỏ, bottom nhỏ */
+  line-height: 1.4;      /* gọn dòng */
+  font-weight: bold;
+}
+
+#previewBox p,
+#previewBox ul,
+#previewBox ol {
+  margin: 2px 0;         /* đoạn văn/list cũng cách đều nhỏ gọn */
+  line-height: 1.4;
+}
+#previewBox li {
+  margin: 3px 0;           /* thu hẹp khoảng cách giữa các item */
+}
+
+/* Inline code */
+#previewBox code {
+  background: #f4f4f4;
+  color: #d6336c;          /* đỏ hồng cho nổi bật */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: Consolas, Monaco, monospace;
+}
+/* Code block */
+#previewBox pre {
+  background: #2d2d2d;     /* nền tối */
+  color: #f8f8f2;          /* chữ sáng */
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;        /* có scroll ngang khi code dài */
+  font-family: Consolas, Monaco, monospace;
+  margin: 8px 0;
+}
+/* Nếu code block có tag <code> bên trong thì bỏ padding */
+#previewBox pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.re-content textarea {
+    width: 100%;
+    height: 100%;           /* chiếm toàn bộ chiều cao .re-content */
+    font-size: 20px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;           /* không cho kéo dãn */
+    outline: none;
+    box-sizing: border-box;
+}
+.re-header_left div {
+  cursor: pointer;
+  padding: 6px 12px;
+}
+.re-header_left .active {
+  background: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #e32020;
+}
+#previewBox {
+  white-space: pre-wrap; /* giữ xuống dòng */
+}
+
+
+
+
+
+
