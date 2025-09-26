@@ -1,0 +1,17 @@
+.news-card_elem {
+    max-width: 100%;
+    border-radius: 6px;
+    overflow: hidden;         /* ảnh không tràn ra ngoài */
+    margin-bottom: 10px;
+}
+.news-card_elem:hover {
+    transform: scale(1.02);     /* phóng to nhẹ */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.news-card_elem img {
+    width: 100%;              /* khớp chiều rộng cha */
+    height: auto;             /* giữ tỉ lệ */
+    display: block;           /* tránh khoảng trắng dưới ảnh */
+}
