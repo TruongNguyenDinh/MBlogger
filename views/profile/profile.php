@@ -73,6 +73,10 @@
                     <div class="pro-post">Post</div>
                 </div>
                 <div class="pro-main-content" id="pro-main-content"></div>
+                <div class="pro-main-post" style="display:none;"id="pro-main-post">
+                    <?php include('../components/post-card.php') ?>
+                    <?php include('../components/post-card.php') ?>
+                </div>
                 <div class="pro-editBtn">Edit</div>
             </div>
         </div>
