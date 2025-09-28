@@ -95,8 +95,8 @@ body, html{
 
 .pro-title-tab {
     display: flex;
-    justify-content: flex-start;   /* đẩy sang bên phải */
-    gap: 15px;                   /* khoảng cách giữa các tab */
+    justify-content: flex-start; /* nếu muốn đẩy sang trái */
+    gap: 15px;                  
     border-bottom: 1px solid #ccc;
     padding-bottom: 8px;
     margin-bottom: 15px;
@@ -109,19 +109,26 @@ body, html{
     background: #f2f2f2;
     font-size: 14px;
     transition: 0.3s;
+
+    /* giữ border để không bị nhảy */
+    border: 1px solid transparent;
+    border-bottom: 1px solid #ccc;
 }
 
 .pro-title-tab div:hover {
     background: #e0e0e0;
 }
 
-.pro-title-tab .active,
-.pro-post .active {
+.pro-title-tab .active {
     background: #fff;
     border: 1px solid #ccc;
-    border-bottom: none;
+    border-bottom: 1px solid #ff1b26; /* đổi màu viền dưới */
     font-weight: bold;
-    border-bottom: 1px solid #ff1b26 ;
+}
+.pro-main-post,
+.pro-main-content{
+    height:80vh;
+    overflow-y: auto;
 }
 .pro-editBtn {
     position: absolute;
