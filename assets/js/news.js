@@ -53,6 +53,24 @@ document.getElementById("recruitment-btn").addEventListener("click",()=>{
 })
 // Thoát đăng tin
 document.getElementById("backBtn_re").addEventListener("click", () => {
+  if (textarea.value.trim() !== "") {
+    // Nếu textarea khác rỗng, hỏi xác nhận
+    const confirmExit = confirm("Bạn có chắc muốn thoát không? Mọi thay đổi sẽ không được lưu.");
+    if (confirmExit) {
+      recruit_news();
+    }
+    else{
+      // Ở lại, không làm gì
+      console.log("Người dùng chọn ở lại");
+            }
+    }
+    else {
+      // Nếu rỗng thì thoát luôn
+      recruit_news();
+  }
+});
+function recruit_news(){
+  textarea.value = "";
   document.querySelector(".news-card").style.display = "grid";
   document.querySelector(".recruitment-news").style.display = "none";
   // Hiện lại nút More và ẩn Group 
@@ -64,8 +82,7 @@ document.getElementById("backBtn_re").addEventListener("click", () => {
   bannerBox.innerHTML = "+ Add banner";
   bannerBox.style.border = "2px dashed #aaa";
   document.getElementById("bannerInput").value = ""; // xoá file đã chọn
-});
-
+}
 // Hiển thị banner
 document.getElementById("bannerInput").addEventListener("change", function (e) {
   const file = e.target.files[0];
@@ -117,8 +134,8 @@ document.getElementById("bannerInput").addEventListener("change", function (e) {
       hljs.highlightElement(block);
     });
     document.querySelectorAll('a[href^="http"]').forEach(link => {
-    link.setAttribute('target', '_blank');
-  });
+      link.setAttribute('target', '_blank');
+    });
   });
 
 
