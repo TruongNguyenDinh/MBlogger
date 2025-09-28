@@ -1,0 +1,145 @@
+body, html{
+    margin: 0;
+    padding: 0;
+}
+.pro-container {
+    display: flex; /* đặt 2 div con nằm cạnh nhau */
+    gap: 20px; /* khoảng cách giữa 2 cột */
+}
+
+/* Cột trái */
+.pro-left-side {
+    flex: 1; /* chiếm tỉ lệ 1 */
+    max-width: 250px; /* có thể cố định chiều rộng tối đa */
+    height: calc(100vh - 75px);
+    border: 1px solid #ccc; /* tùy chọn: tạo đường chia cột */
+    padding: 10px;
+    border-radius: 8px 8px 300px 0;
+}
+
+
+/* Cột phải */
+.pro-main-side {
+    flex: 4; /* chiếm nhiều không gian hơn */
+    padding: 10px;
+}
+/* Sử lý cột trái */
+.pro-profile_user {
+    display: flex;
+    flex-direction: column; /* xếp avatar và detail dọc */
+    gap: 15px;              /* khoảng cách giữa avatar và detail */
+    align-items: flex-start; 
+}
+/* Chỉnh avatar */
+.pro-avt {
+    display: flex;
+    flex-direction: row;   /* xếp dọc */
+    justify-content: center;  /* căn giữa theo chiều dọc */
+    height: 100%;             /* hoặc chiều cao cụ thể */
+    width: 100%;
+}
+.pro-avt img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+/* Detail user: chia 2 cột bên trong */
+.pro-detail-user,
+.pro-github-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* khoảng cách giữa các dòng */
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px ;
+}
+
+.pro-row {
+    display: flex;
+    gap: 15px;             /* khoảng cách label – value vừa phải */
+    align-items: flex-start;
+}
+
+.pro-row .label {
+    color: #606060;
+    width: 60px;          /* cố định chiều rộng label */
+    flex-shrink: 0;
+}
+
+.pro-row .value {
+    flex: 1;               /* chiếm phần còn lại */
+    word-break: break-word;
+}
+.pro-row .value a {
+    color: inherit;          /* màu giống text xung quanh */
+    cursor: pointer;         /* con trỏ chuột vẫn thành tay khi hover */
+}
+
+/* Tùy chọn: hover đổi màu nhẹ */
+.pro-row .value a:hover {
+    color: #007bff;          /* màu xanh khi hover, tùy chỉnh */
+    text-decoration: underline; /* chỉ underline khi hover */
+}
+
+/* Right */
+.pro-main-side {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background: #fff;
+}
+
+.pro-title-tab {
+    display: flex;
+    justify-content: flex-start;   /* đẩy sang bên phải */
+    gap: 15px;                   /* khoảng cách giữa các tab */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.pro-title-tab div {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 5px 5px 0 0;
+    background: #f2f2f2;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.pro-title-tab div:hover {
+    background: #e0e0e0;
+}
+
+.pro-title-tab .active,
+.pro-post .active {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    font-weight: bold;
+    border-bottom: 1px solid #ff1b26 ;
+}
+.pro-editBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.pro-editBtn:hover {
+    background-color: #0056b3;
+}
+
+
+
