@@ -71,7 +71,10 @@
                 </div>
 
             </div>
-            <div class="post-btns">POST</div>
+            <div class="post-btns" id="post-btn" style="display:none;">POST</div>
+            <div id="show-post-repo-card" style="display:none;">
+                <?php include('../components/post-repo.php') ?>
+            </div>
         </div>
     </main>
     <script src="../../assets/js/repo.js"></script>
