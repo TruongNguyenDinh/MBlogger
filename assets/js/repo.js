@@ -1,4 +1,4 @@
-let currentPath = "";
+let currentPath = "User >> Reference";
 const repoOwner = "TruongNguyenDinh";
 const repoName = "MBlogger";
 
@@ -142,6 +142,7 @@ document.querySelectorAll(".repo-table tbody tr").forEach(row => {
         document.querySelector(".repo-folder-default").style.display = "none";
 
         // Hiện các phần khác
+        document.getElementById("post-btn").style.display ="block";
         document.querySelector(".repo-show-content").style.display = "block";
         document.getElementById("repo-folder-tree").style.display = "block";
         document.querySelector(".repo-folder-branch").style.display = "block";
@@ -159,13 +160,14 @@ document.querySelectorAll(".repo-table tbody tr").forEach(row => {
 // Xử lý Back
 backBtn.addEventListener("click", () => {
     // Ẩn phần repo details
+    document.getElementById("post-btn").style.display ="none";
     document.querySelector(".repo-show-content").style.display = "none";
     document.getElementById("repo-folder-tree").style.display = "none";
     document.querySelector(".repo-folder-branch").style.display = "none";
 
     // Hiện lại bảng repo
     document.querySelector(".repo-show-repo").style.display = "block";
-    document.querySelector(".repo-folder-tree_none").style.display = "block";
+    document.querySelector(".repo-folder-tree_none").style.display = "flex";
     document.querySelector(".repo-folder-default").style.display = "block";
     
 
@@ -173,3 +175,37 @@ backBtn.addEventListener("click", () => {
     document.querySelector(".dynamic-path").textContent = "";
     backBtn.style.display = "none";
 });
+
+//bật post
+document.getElementById('post-btn').addEventListener('click',()=>{
+  document.getElementById("show-post-repo-card").style.display="flex";
+});
+
+// tắt post
+// Chọn nút Cancel
+const cancelBtn = document.getElementById('cancel-post-btn');
+const postCard = document.getElementById('show-post-repo-card');
+
+cancelBtn.addEventListener('click', () => {
+    postCard.style.display = 'none';
+});
+// Is used readme
+const isUsedCheckbox = document.getElementById('isused');
+const useReadmeDiv = document.getElementById('use-readme');
+const customContentDiv = document.getElementById('custom-content');
+
+function toggleContent() {
+    if (isUsedCheckbox.checked) {
+        // Nếu chọn Use README → tắt textarea
+        useReadmeDiv.style.display = 'block';
+        customContentDiv.style.display = 'none';
+    } else {
+        // Ngược lại → bật textarea
+        useReadmeDiv.style.display = 'none';
+        customContentDiv.style.display = 'block';
+    }
+}
+// Gọi lần đầu để set đúng trạng thái mặc định
+toggleContent();
+// Lắng nghe sự kiện thay đổi checkbox
+isUsedCheckbox.addEventListener('change', toggleContent);
