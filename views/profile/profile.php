@@ -75,13 +75,16 @@
                 <div class="pro-main-content" id="pro-main-content"></div>
                 <div class="pro-main-post" style="display:none;"id="pro-main-post">
                     <?php include('../components/post-card.php') ?>
-                    <?php include('../components/post-card.php') ?>
                 </div>
                 <div class="pro-editBtn">Edit</div>
+            </div>
+            <div class="fcpContainer" id="fcpContainer" style="display:none;">
+                <?php include("../components/flex-card-post.php")?>
             </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../../assets/js/profile.js"></script>
+    <script src="../../assets/js/article.js"></script>
 </body>
 </html>
