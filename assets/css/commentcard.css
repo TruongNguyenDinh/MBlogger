@@ -1,0 +1,35 @@
+.comment-card-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    font-family: sans-serif;
+}
+
+.ccn-top {
+    display: flex;
+    align-items: center; /* căn giữa theo chiều dọc */
+    gap: 10px;           /* khoảng cách giữa avatar và tên */
+    margin-bottom: 5px;  /* cách nội dung phía dưới */
+}
+
+.ccn-avt {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #aaa; /* màu giả avatar */
+    flex-shrink: 0;         /* không co lại */
+}
+
+.ccn-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ccn-content {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    white-space: pre-wrap;  /* giữ xuống dòng trong text */
+}

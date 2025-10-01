@@ -1,0 +1,55 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+.setting-container {
+  display: flex;       /* Chia layout trái - phải */
+  width: 100%;
+  height: 93vh;       /* full màn hình, tuỳ chỉnh */
+}
+
+/* Cột bên trái */
+.setting-left-side {
+  display: flex;       
+  flex-direction: column;   /* xếp dọc */
+  align-items: stretch;     /* cho con full width */
+  gap: 15px;                
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  width: 200px;             /* cố định độ rộng cột trái */
+  padding: 10px 0;
+}
+
+/* Các mục trong left */
+.setting-left-side div {
+  width: 100%;              /* chiếm hết chiều rộng cha */
+  text-align: center;       /* căn giữa chữ ngang */
+  padding: 10px 0;          /* thêm khoảng cách cho đẹp */
+  /* border-radius: 6px; */
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.setting-left-side div:hover {
+  background-color: #e0e0e0;
+}
+
+
+.setting-left-side div:hover {
+  background-color: #e0e0e0;
+}
+.setting-left-side .active {
+  background: #007bff;
+  color: white;
+  /* border-radius: 6px; */
+}
+
+/* Cột bên phải */
+.setting-main-side {
+  flex: 1;             /* chiếm toàn bộ không gian còn lại */
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  border-left: 0px;
+}
+
