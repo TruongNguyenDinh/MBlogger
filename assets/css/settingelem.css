@@ -1,0 +1,204 @@
+/* Toàn bộ khung account */
+.account-container {
+  display: flex;
+  flex-direction: column;  /* xếp theo cột */
+  width: 100%;             /* chiếm hết chiều rộng cha */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Phần trên */
+.top-side {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Basic info */
+.basic-content {
+  display: flex;
+  flex-direction: column; /* các row xếp dọc */
+  gap: 12px;              /* khoảng cách giữa các row */
+}
+
+/* Mỗi row gồm trái và phải */
+.row-content {
+  display: flex;
+  gap: 12px;
+}
+
+/* Trái dài hơn */
+.left-input {
+  flex: 2;   /* chiếm nhiều hơn */
+  display: flex;
+  align-items: center;
+}
+
+.right-input {
+  flex: 1;   /* ngắn hơn */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Input và select chung style */
+.left-input input,
+.right-input input,
+.right-input select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Label căn trên select */
+.right-input label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Advantage button */
+.adv-btn {
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #007bff;
+  user-select: none;
+}
+
+.adv-btn:hover {
+  text-decoration: underline;
+}
+
+/* Advantage content */
+.adv-content {
+  margin-top: 10px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  display: none; /* mặc định ẩn */
+}
+/* Colab to Github */
+/* Button Github */
+/* Button Github */
+.left-input button {
+  padding: 8px 14px;
+  background-color: #24292f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.left-input button:hover {
+  background-color: #444c56;
+}
+
+/* Status */
+.left-input .connected,
+.left-input .unconnect {
+  margin-left:10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: none; /* ẩn mặc định */
+}
+
+/* Hiện khi có active */
+.left-input .connected.active,
+.left-input .unconnect.active {
+  display: inline-block;
+}
+
+/* Style connected */
+.left-input .connected {
+  background-color: #e6ffed;
+  color: #22863a;
+  border: 1px solid #34d058;
+}
+
+/* Style unconnected */
+.left-input .unconnect {
+  background-color: #ffeef0;
+  color: #d73a49;
+  border: 1px solid #f97583;
+}
+
+/* Change connection link */
+.change-con {
+  font-size: 14px;
+  color: #0366d6;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.change-con:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.right-input .connected.active,
+.right-input .unconnect.active {
+  display: block;
+}
+#gitusername {
+  width: fit-content;
+}
+.github-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* khoảng cách giữa label và input */
+}
+
+.github-info label {
+  font-weight: bold;
+}
+/* Button edit và save */
+/* Nút edit và save cố định góc phải dưới */
+.group-btns {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#edit-btn, 
+#save-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#edit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+#save-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+#save-btn:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* Input mặc định không chỉnh sửa */
+.basic-content input,
+.basic-content select {
+  pointer-events: none;    /* chặn bấm */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+
+
+

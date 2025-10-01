@@ -147,6 +147,8 @@ body, html{
 .pro-editBtn:hover {
     background-color: #0056b3;
 }
-
+.fcpContainer{
+    position: fixed;
+}
 
 
