@@ -10,6 +10,7 @@
   });
 //
 // Xử lý click vào 1 news
+// Xử lý click vào 1 news
 document.querySelector(".news-card").addEventListener("click", function(e) {
   const link = e.target.closest(".news-card_elem a");
   if (!link) return;
@@ -17,27 +18,48 @@ document.querySelector(".news-card").addEventListener("click", function(e) {
   e.preventDefault();
   const newsId = link.closest(".news-card_elem").dataset.id;
 
-  fetch("../../controls/get_news.php?id=" + newsId)
-    .then(res => res.json()) // PHP trả JSON thay vì HTML
-    .then(data => {
-        //Ẩn danh sách
-      document.querySelector(".news-card").style.display = "none";
-      document.querySelector(".news-modal").style.display = "block";
-      document.querySelector(".group_btns").style.display = "none";
-      // Ẩn nút More
-      document.getElementById("more-btn").style.display = "none";
-      // Ghi nội dung vào từng div
-      document.getElementById("who-post").innerHTML = `<strong>${data.author}</strong>, ${data.date}`;
-      document.getElementById("news-detail").innerHTML = `<h2>${data.title}</h2><p>${data.content}</p>`;
-    });
+  // Ghi query vào URL rồi reload trang
+  const url = new URL(window.location);
+  url.searchParams.set("query-newsID", newsId);
+  window.location.href = url.toString();
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const url = new URL(window.location);
+  const newsId = url.searchParams.get("query-newsID");
+
+  if (newsId) {
+    fetch("../../controls/get_news.php?id=" + newsId)
+      .then(res => res.json())
+      .then(data => {
+        document.querySelector(".news-card").style.display = "none";
+        document.querySelector(".news-modal").style.display = "block";
+        document.querySelector(".group_btns").style.display = "none";
+        document.getElementById("more-btn").style.display = "none";
+
+        document.getElementById("who-post").innerHTML = `<strong>${data.author}</strong>, ${data.date}`;
+        document.getElementById("news-detail").innerHTML = `<h2>${data.title}</h2><p>${data.content}</p>`;
+      });
+  }
+  // Nếu có query-recruitment thì mở form tuyển dụng
+  if (url.searchParams.get("query-recruitment") === "true") {
+    document.querySelector(".news-card").style.display = "none";
+    document.querySelector(".recruitment-news").style.display = "block";
+    document.querySelector(".news-scene_more").style.display = "none";
+  }
+});
+
 
 // Gắn Back 1 lần duy nhất
 document.getElementById("backBtn").addEventListener("click", () => {
+  const url = new URL(window.location);
+  url.searchParams.delete("query-newsID");
   document.querySelector(".news-card").style.display = "grid";
   document.querySelector(".news-modal").style.display = "none";
   // Hiện lại nút More
   document.getElementById("more-btn").style.display = "block";
+  // Reload về URL gốc
+  window.location.href = url.toString();
 });
 // Nút quay lại
 document.getElementById("backBtn").addEventListener("click", () => {
@@ -50,9 +72,34 @@ document.getElementById("recruitment-btn").addEventListener("click",()=>{
   document.querySelector(".recruitment-news").style.display="block";
   // Ẩn nút More
   document.querySelector(".news-scene_more").style.display = "none";
+  const url = new URL(window.location);
+  url.searchParams.set("query-recruitment", "true");
+  window.location.href = url.toString(); // reload trang
 })
 // Thoát đăng tin
 document.getElementById("backBtn_re").addEventListener("click", () => {
+  if (textarea.value.trim() !== "") {
+    // Nếu textarea khác rỗng, hỏi xác nhận
+    const confirmExit = confirm("Bạn có chắc muốn thoát không? Mọi thay đổi sẽ không được lưu.");
+    if (confirmExit) {
+      recruit_news();
+    }
+    else{
+      // Ở lại, không làm gì
+      console.log("Người dùng chọn ở lại");
+            }
+    }
+    else {
+      // Nếu rỗng thì thoát luôn
+      recruit_news();
+  }
+  const url = new URL(window.location);
+  url.searchParams.delete("query-recruitment");
+  // Reload về URL gốc
+  window.location.href = url.toString();
+});
+function recruit_news(){
+  textarea.value = "";
   document.querySelector(".news-card").style.display = "grid";
   document.querySelector(".recruitment-news").style.display = "none";
   // Hiện lại nút More và ẩn Group 
@@ -64,8 +111,7 @@ document.getElementById("backBtn_re").addEventListener("click", () => {
   bannerBox.innerHTML = "+ Add banner";
   bannerBox.style.border = "2px dashed #aaa";
   document.getElementById("bannerInput").value = ""; // xoá file đã chọn
-});
-
+}
 // Hiển thị banner
 document.getElementById("bannerInput").addEventListener("change", function (e) {
   const file = e.target.files[0];
@@ -117,8 +163,8 @@ document.getElementById("bannerInput").addEventListener("change", function (e) {
       hljs.highlightElement(block);
     });
     document.querySelectorAll('a[href^="http"]').forEach(link => {
-    link.setAttribute('target', '_blank');
-  });
+      link.setAttribute('target', '_blank');
+    });
   });
 
 

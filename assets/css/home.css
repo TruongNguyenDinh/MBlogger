@@ -49,3 +49,6 @@ main {
     gap: 10px;
     overflow-y: auto;         /* cuộn dọc khi nhiều */
 }
+.fcpContainer{
+    position: fixed;
+}

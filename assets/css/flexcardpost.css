@@ -1,0 +1,105 @@
+.fcp-container {
+  position: fixed;           /* thẻ nổi */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 500px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: flex;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* Chia làm 2 vế */
+.fcp-left-side {
+    flex: 2;
+    background: #f9f9f9;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* chia theo cột */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.fcp-right-side {
+  flex: 1;                   /* chiếm 1 phần còn lại */
+  display: flex;
+  flex-direction: column;     /* chia theo hàng */
+  padding: 10px;
+}
+
+/* Comment hiển thị */
+.fcp-comment {
+  flex: 1;                   /* chiếm hết phần trên */
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+/* Ô nhập ở cuối */
+.fcp-wcomment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 0 0;
+}
+
+.fcp-wcomment textarea {
+  flex: 1 1 auto;
+  min-width: 200px;
+  min-height: 28px;   /* giảm chiều cao */
+  max-height: 120px;  /* bớt tối đa để gọn */
+  padding: 6px 8px;   /* padding nhỏ hơn */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;       /* không cho kéo */
+  line-height: 1.3;
+}
+
+
+.fcp-wcomment button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+
+.fcp-wcomment button:hover {
+  background: #0056b3;
+}
+#fcpContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* nền mờ đen */
+  display: none;               /* ẩn mặc định */
+  justify-content: center;     /* căn giữa popup */
+  align-items: center;
+  z-index: 9999;               /* nổi lên trên */
+}
+.fcp-left-side .container-post {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* container chiếm toàn bộ height của fcp-left-side */
+    overflow: hidden; /* để không tràn ra ngoài */
+}
+
+.fcp-left-side .article-content {
+    flex: 1;           /* phần content chiếm phần còn lại */
+    overflow-y: auto;  /* scroll nếu nội dung dài */
+}
+
+
+
