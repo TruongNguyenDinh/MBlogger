@@ -15,5 +15,16 @@ document.addEventListener("click", function(e) {
       : "Show more";
   }
 });
+// Xử lý news
+document.querySelectorAll('.news-card_elem a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const id = this.closest('.news-card_elem')?.dataset.id;
+    if (!id) return;
+    window.location.href = `/mblogger/views/news/news.php?query-newsID=${encodeURIComponent(id)}`;
+  });
+});
+
+
 
 
