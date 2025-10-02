@@ -25,8 +25,16 @@ comments.forEach(comment => {
             });
         // Load nội dung bài viết vào fcp-left-side (có thể hardcode trước hoặc từ PHP)
         const articleCard = comment.closest('.container-post').cloneNode(true);
-        fcpLeft.innerHTML = '';
-        fcpLeft.appendChild(articleCard);
+        // Xóa phần comment khỏi bản copy toggle-btn
+        const clonedComment = articleCard.querySelector(".article-comment");
+        const toggleBtn = articleCard.querySelector(".toggle-btn");
+        if (clonedComment && toggleBtn ) {
+            clonedComment.remove();
+            toggleBtn.remove();
+        }
+
+fcpLeft.innerHTML = '';
+fcpLeft.appendChild(articleCard);
 
         // Hiển thị popup
         fcp.style.display = "flex";
