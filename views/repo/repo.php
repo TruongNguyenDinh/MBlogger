@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repostories</title>
     <link rel="stylesheet" href="../../assets/css/repopage.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -38,7 +38,6 @@
                         <div class="openGithub-btn">Open in Github</div>
                     </div>
                 </div>
-
                 <div class="repo-show-content" style="display:none;"></div>
                 <div class="repo-show-repo">
                     <table class="repo-table">
@@ -49,27 +48,14 @@
                                 <th>Total Star</th>
                                 <th>Branch</th>
                                 <th>Comments</th>
+                                <th>ID</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>MBlogger</td>
-                                <td>Fix bug in UI</td>
-                                <td>⭐ 12</td>
-                                <td>1</td>
-                                <td>5</td>
-                            </tr>
-                            <tr>
-                                <td>AI-Project</td>
-                                <td>Update model training</td>
-                                <td>⭐ 30</td>
-                                <td>1</td>
-                                <td>10</td>
-                            </tr>
+                            <?php include '../../service/get_repos.php'; ?>
                         </tbody>
                     </table>
                 </div>
-
             </div>
             <div class="post-btns" id="post-btn" style="display:none;">POST</div>
             <div id="show-post-repo-card" style="display:none;">
@@ -78,5 +64,6 @@
         </div>
     </main>
     <script src="../../assets/js/repo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
