@@ -129,7 +129,7 @@ html, body {
   flex: 1;
   padding: 15px;
   overflow-y: auto;
-  font-family: monospace;
+  /* font-family: monospace; */
   white-space: pre-wrap;
   background: #fff;
 }
