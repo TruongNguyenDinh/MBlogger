@@ -9,7 +9,6 @@
             Text | Markdown
             </div>
         </div>
-
         <div class="re-content">
             <textarea name="re-content" id="re-content"></textarea>
             <div id="previewBox"></div>
@@ -30,11 +29,7 @@
             <div class="topicInput">
                 <input type="text" id="topicInput" placeholder="topic...">
             </div>
-
-
-            <div class="re-add-topic">
-
-            </div>
+            <div class="re-add-topic"></div>
         </div>
         <div class="re-right_bottom">
             <button>POST</button>

@@ -15,3 +15,20 @@
         <div class="so-menu"><a href="../setting/setting.php">Signout</a></div>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname;
+    const currentPage = path.split("/").pop(); // lấy tên file, vd: 'home.php'
+
+    // Xóa tất cả active cũ
+    document.querySelectorAll(".menu-header > div").forEach(div => {
+        div.classList.remove("active");
+    });
+
+    // Tìm thẻ a có href chứa trang hiện tại
+    const activeLink = document.querySelector(`.menu-header a[href*="${currentPage}"]`);
+    if (activeLink) {
+        activeLink.parentElement.classList.add("active");
+    }
+});
+</script>

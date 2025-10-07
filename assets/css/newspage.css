@@ -254,63 +254,21 @@ display: none;
 #previewBox {
   display: none;
   width: 100%;
-  height: 100%;
-  line-height: 1.6;          /* 👈 chỉnh line-height chung cho toàn bộ */
+  height: 100%; 
   border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 20px;
   box-sizing: border-box;
   background: #fff;
   overflow-y: auto;
 }
 
-/* Reset heading để giống text thường */
-#previewBox h1,
-#previewBox h2,
-#previewBox h3,
-#previewBox h4,
-#previewBox h5,
-#previewBox h6 {
-  margin: 8px 0 4px 0;   /* top nhỏ, bottom nhỏ */
-  line-height: 1.4;      /* gọn dòng */
-  font-weight: bold;
+/* Áp dụng style GitHub */
+#previewBox.markdown-body {
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  line-height: 1;
 }
 
-#previewBox p,
-#previewBox ul,
-#previewBox ol {
-  margin: 2px 0;         /* đoạn văn/list cũng cách đều nhỏ gọn */
-  line-height: 1.4;
-}
-#previewBox li {
-  margin: 3px 0;           /* thu hẹp khoảng cách giữa các item */
-}
-
-/* Inline code */
-#previewBox code {
-  background: #f4f4f4;
-  color: #d6336c;          /* đỏ hồng cho nổi bật */
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-family: Consolas, Monaco, monospace;
-}
-/* Code block */
-#previewBox pre {
-  background: #2d2d2d;     /* nền tối */
-  color: #f8f8f2;          /* chữ sáng */
-  padding: 10px;
-  border-radius: 6px;
-  overflow-x: auto;        /* có scroll ngang khi code dài */
-  font-family: Consolas, Monaco, monospace;
-  margin: 8px 0;
-}
-/* Nếu code block có tag <code> bên trong thì bỏ padding */
-#previewBox pre code {
-  background: none;
-  color: inherit;
-  padding: 0;
-  font-size: inherit;
-}
 
 .re-content textarea {
     width: 100%;
