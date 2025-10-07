@@ -6,8 +6,18 @@ const fcpComment = fcp.querySelector(".fcp-comment");
 const textarea = document.getElementById("wcomment");
 
 // Lưu URL ban đầu để khi đóng popup có thể trả về
-const originalUrl = window.location.href;
-
+let originalUrl = window.location.origin + window.location.pathname; // luôn là URL gốc
+// ✅ Thêm đoạn này để tự mở popup nếu có query-articleID trên URL
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const articleId = params.get("query-articleID");
+    if (articleId) {
+        // Tìm phần tử comment có data-id tương ứng
+        const comment = document.querySelector(`.article-comment[data-id="${articleId}"]`);
+        if (comment) comment.click(); // Gọi sự kiện click như người dùng bấm
+    }
+});
+// ✅ Hết phần thêm
 comments.forEach(comment => {
     comment.addEventListener("click", () => {
         const articleId = comment.dataset.id;

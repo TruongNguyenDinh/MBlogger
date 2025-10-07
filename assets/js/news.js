@@ -155,8 +155,16 @@ document.getElementById("bannerInput").addEventListener("change", function (e) {
     previewBox.style.display = "block";
 
     // Convert Markdown
+    // Convert Markdown (đẹp như GitHub)
+    const converter = new showdown.Converter({
+      tables: true,
+      strikethrough: true,
+      ghCodeBlocks: true,
+    });
     const html = converter.makeHtml(textarea.value);
-    previewBox.innerHTML = html;
+    const preview = document.getElementById("previewBox");
+    preview.innerHTML = html;
+    preview.classList.add("markdown-body");
 
     // Highlight tất cả code trong preview
     previewBox.querySelectorAll("pre code").forEach((block) => {

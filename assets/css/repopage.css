@@ -130,7 +130,6 @@ html, body {
   padding: 15px;
   overflow-y: auto;
   /* font-family: monospace; */
-  white-space: pre-wrap;
   background: #fff;
 }
 /* Bảng hiện repo */
