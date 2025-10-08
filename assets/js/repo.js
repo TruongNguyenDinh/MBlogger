@@ -1,7 +1,7 @@
 let currentPath = "User >> Reference";
 const repoOwner = "TruongNguyenDinh";
 let repoName = "";
-// Token here
+
 const branchSelect = document.getElementById("branch-select");
 const folderTree = document.getElementById("repo-folder-tree");
 const dynamicPath = document.querySelector(".dynamic-path");
@@ -9,6 +9,9 @@ const showContent = document.querySelector(".repo-show-content");
 
 const username = "TruongNguyenDinh"; // GitHub username của bạn
 const branchBox = document.querySelector(".repo-folder-branch");
+
+// Lưu URL ban đầu để khi đóng popup có thể trả về
+let originalUrl = window.location.origin + window.location.pathname; // luôn là URL gốc
 
 function loadBranches(repo) {
     branchSelect.innerHTML = `<option>Đang tải...</option>`;
@@ -214,15 +217,46 @@ repoRows.forEach(row => {
 
     // Cập nhật dynamic path
     dynamicPath.textContent = `${repoOwner} >> ${repoName}`;
-
+    // 👉 Cập nhật query repoID trên URL mà không reload trang
+    const repoId = row.dataset.repoid;
+    const newUrl = new URL(window.location);
+    newUrl.searchParams.set("repoID", repoId);
+    window.history.replaceState({}, "", newUrl);
     // Hiện nút back
     backBtn.style.display = "inline-block";
   });
+});
+//Tạo query
+//----------------------- Mở repo tự động nếu có query -----------------------
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+function openRepoById(repoId) {
+  const targetRow = Array.from(repoRows).find(row => row.dataset.repoid === repoId);
+  if (!targetRow) return;
+
+  // Giống như hành động click vào row
+  targetRow.click();
+}
+
+// Khi load trang, kiểm tra query ?repoID
+window.addEventListener("DOMContentLoaded", () => {
+  const repoId = getQueryParam("repoID");
+  if (repoId) {
+    // Đợi DOM sẵn sàng (phòng trường hợp PHP include load hơi chậm)
+    setTimeout(() => {
+      openRepoById(repoId);
+    }, 500);
+  }
 });
 
 
 // Xử lý Back
 backBtn.addEventListener("click", () => {
+  // Trả URL về ban đầu
+    window.history.pushState({}, '', originalUrl);
     // Ẩn phần repo details
     document.getElementById("post-btn").style.display ="none";
     document.querySelector(".repo-show-content").style.display = "none";

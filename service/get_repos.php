@@ -1,6 +1,5 @@
 <?php
 $username = "TruongNguyenDinh";
-// $toke here
 $url = "https://api.github.com/users/$username/repos";
 
 // --- Gọi API lấy danh sách repo ---
@@ -54,7 +53,11 @@ foreach ($repos as $repo) {
         : "No commits";
 
     echo "
-    <tr data-repo='$repoName' data-branch='$branch'>
+    <tr 
+        data-repo='$repoName' 
+        data-branch='$branch' 
+        data-repoid='$repoId'
+    >
         <td>$repoName</td>
         <td>$latestCommit</td>
         <td>⭐ $stars</td>
