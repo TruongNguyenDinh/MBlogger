@@ -1,0 +1,239 @@
+/* Header */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-image: url("../imgs/2819623.svg");
+    background-size: cover; /* hoặc contain, tùy ý */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../fonts/BebasNeue-Regular.ttf') format('ttf');
+    font-style: normal;
+}
+@font-face{
+    font-family: "Raleway";
+    src: url("../fonts/Raleway-ExtraLight.ttf") format('ttf');
+    font-style: normal;
+}
+/* Logo */
+h1{
+   font-family: 'BebasNeue', sans-serif; 
+   color: white;
+}
+.menu {
+    display: flex;           /* sắp xếp h1 + ul thành 1 hàng */
+    align-items: center;     /* căn giữa theo chiều dọc */
+    gap: clamp(16px, 2vw, 40px);;               /* khoảng cách giữa h1 và menu */
+    padding: 25px 25px;
+}
+
+.menu h1 {
+    margin: 0;
+    font-size: clamp(16px, 2vw, 40px);
+}
+.menu ul {
+    list-style: none;        /* bỏ dấu chấm đầu dòng */
+    display: flex;           /* các li nằm 1 hàng ngang */
+    gap: clamp(10px, 1.5vw, 35px);              /* khoảng cách giữa các mục */
+    margin: 0;
+    padding: 0;
+}
+.menu li a {
+    font-family: "Raleway", sans-serif ;
+    text-decoration: none;   /* bỏ gạch chân */
+    color:whitesmoke;
+    font-size: clamp(10px, 1.3vw, 35px);
+}
+.menu li i{
+    margin-top: 5px;
+    color:white;
+    font-size: clamp(10px, 1.3vw, 35px);
+}
+/* Input search */
+.search-group {
+  position: relative; /* để con absolute bám theo cha */
+  width: 250px;       /* cho gọn */
+}
+.form_search {
+    display: none;
+    padding: 4px 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+
+.form_search::placeholder {
+    color: #999;     
+}
+.form_search:hover,
+.form_search:focus {
+    border-color: #ff00f7;           /* đổi màu viền */
+    box-shadow: 0 0 20px rgba(249, 8, 229, 0.5); /* sáng viền */
+}
+/* Help seacher */
+
+.suggestions{
+    position: absolute;
+    border: 1px solid #ccc;
+    background: #fff;
+    width:auto;
+    display: none;
+    z-index: 1000;
+    border-radius: 10px;
+}
+.suggestions div {
+  padding: 8px;
+  cursor: pointer;
+}
+.suggestions div:hover {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+/* End header */
+
+/* Main */
+main {
+    display: flex;
+    align-items: center;       /* Căn giữa theo chiều dọc */
+    justify-content: center;   /* Căn giữa theo chiều ngang */
+}
+/* Layout chung */
+.form-card {
+    display: flex;
+    flex-direction: column; /* xếp theo chiều dọc */
+    width: 400px;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden; /* quan trọng để bo góc không bị lệch */
+}
+/* Phần lời chào và icon */
+.top-side {
+    flex: 4; 
+    background: #8581ff2b;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;      /* xếp ảnh và chữ theo cột */
+    justify-content: center;     /* căn giữa theo dọc */
+    align-items: center;         /* căn giữa theo ngang */
+}
+/* Icon */
+.top-side img {
+    width: 200px;   /* chỉnh lại kích thước ảnh */
+    height: auto;   /* giữ tỉ lệ */
+    margin-bottom: 60px; /* tạo khoảng cách với chữ */
+}
+
+/* Greeting */
+.greeting{
+    font-family: 'BebasNeue',sans-serif;
+    font-size: 50px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;   /* cách mép dưới 10px */
+    left: 5px;     /* cách mép trái 10px */
+}
+
+/* Phần dưới */
+.bottom-side {
+    flex: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.641);
+    padding: 20px;
+}
+
+/* Input form */
+
+/* Login */
+.general-form {
+    width: 100%;
+    max-width: 350px;
+    background-color: rgba(255, 255, 255, 0.552); /* nền trắng mờ */
+    border-radius: 10px;
+    padding: 30px 20px;          /* thêm khoảng trống trong */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* bóng nhẹ */
+}
+
+.general-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* khoảng cách giữa các nhóm */
+}
+
+.general-form .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #3b277d;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 8px 12px;
+    background: #fff;
+}
+
+.input-group i {
+    margin-right: 8px;
+    color: #888;
+}
+
+.input-group input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+#remember-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    color: #555;
+}
+
+#action-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#action-section a {
+    font-size: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+#action-section a:hover {
+    text-decoration: underline;
+}
+
+#action-section button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#action-section button:hover {
+    background: #0056b3;
+}
