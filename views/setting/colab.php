@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../assets/css/settingelem.css">
 <div class="account-container">
     <div class="top-side">
-        <div class="show-id">ID: xxx</div>
+        <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
     </div>
     <div class="basic-content">
         <div class="row-content">

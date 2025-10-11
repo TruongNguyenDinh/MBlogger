@@ -1,32 +1,33 @@
 <link rel="stylesheet" href="../../assets/css/settingelem.css">
 <div class="account-container">
     <div class="top-side">
-        <div class="show-id">ID: xxx</div>
+        <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
     </div>
     <div class="basic-content">
         <div class="row-content">
             <div class="left-input">
-               <input type="text" name="" id="fullname" value="Nguyễn Đình Trường"> 
+               <input type="text" name="" id="fullname" value="Full Name: <?= htmlspecialchars($user->getName()) ?>"> 
             </div>
             <div class="right-input">
-                <input type="date" name="" id="birthday">
+                <input type="date" id="birthday" name="birthday" 
+                    value="<?= htmlspecialchars($user->getBirthday() ??  '') ?>">
             </div>
         </div>
         <div class="row-content">
             <div class="left-input">
-               <input type="email" name="" id="email" value="truong@gmail.com"> 
+               <input type="email" name="" id="email" value="Email: <?= htmlspecialchars($user->getEmail()) ?>"> 
             </div>
             <div class="right-input">
-                <input type="text" name="" id="work" value="Software Engineer">
+                <input type="text" name="" id="work" value="Work: <?= htmlspecialchars($user->getWork() ?? 'N/A') ?>">
             </div>
         </div>
         <div class="row-content">
             <div class="left-input">
-               <input type="text" name="" id="phone" value="0362361299"> 
+               <input type="text" name="" id="phone" value="Phone: <?= htmlspecialchars($user->getPhone() ?? 'N/A') ?>"> 
             </div>
             <div class="right-input">
                 <select id="who" name="who" required>
-                    <option value="" disabled selected hidden>---None---</option>
+                    <option value="" disabled selected hidden>Role: <?= htmlspecialchars($user->getRole()) ?></option>
                     <option value="person">person</option>
                     <option value="company">company</option>
                     <option value="employer">employer</option>
@@ -36,7 +37,7 @@
         </div>
         <div class="row-content">
             <div class="left-input">
-               <input type="text" name="" id="address" value="Hồng Châu, Hải Phòng, Việt Nam"> 
+               <input type="text" name="" id="address" value="Address: <?= htmlspecialchars($user->getAddress() ?? 'N/A') ?>"> 
             </div>
         </div>
     </div>

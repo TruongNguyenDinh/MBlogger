@@ -1,21 +1,31 @@
 <?php
 session_start();
-// user tĩnh test
-$valid_user = "admin";
-$valid_pass = "123";
+require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../service/UserService.php';
 
+$basePath = '/mblogger/views';
+
+// Lấy dữ liệu từ form
 $username = $_POST['username'] ?? '';
 $password = $_POST['pass'] ?? '';
 
-// Lấy base path của dự án
-$basePath = '/mblogger/views';  // dự án nằm trong folder memoriesflow
+// Tạo kết nối
+$conn = Database::getConnection();
 
-if($username === $valid_user && $password === $valid_pass){
-    $_SESSION['user_id'] = $username;
-    header("Location: $basePath/home/home.php"); // redirect đúng
+// Truyền connection vào Service
+$service = new UserService($conn);
+$result = $service->checkLogin($username, $password);
+
+if ($result['success']) {
+    $_SESSION['user'] = [
+        'id' => $result['user']->getId(),
+        'fullname' => $result['user']->getName(),
+        'role' => $result['user']->getRole()
+    ];
+    header("Location: $basePath/home/home.php");
     exit;
 } else {
-    $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu";
+    $_SESSION['error'] = $result['message'];
     header("Location: $basePath/form/form.php");
     exit;
 }

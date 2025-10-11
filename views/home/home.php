@@ -1,3 +1,17 @@
+<?php
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../controls/HomeController.php';
+
+// Tạo kết nối database
+$conn = Database::getConnection();
+
+// Khởi tạo controller
+$controller = new HomeController($conn);
+
+// Gọi hàm lấy dữ liệu
+$data = $controller->renderHome();
+$articles = $data['results'];  // lấy mảng kết quả ra
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="../../assets/css/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <header>
@@ -12,7 +27,9 @@
     </header>
     <main>
         <div class="feeds-side-home">
-                <?php include("../components/post-card.php")?>
+            <?php 
+                include("../components/post-card.php");
+            ?>
         </div>
         <div class="news-side-home">
             <div class="title-news">News</div>

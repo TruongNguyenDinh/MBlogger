@@ -5,42 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="../../assets/css/profilepage.css">
+    <?php include('../../controls/profilecontroller.php') ?>
 </head>
 <body>
     <header>
-        <?php include('../header/header.html') ?>
+        <?php include __DIR__ . '/../header/header.html'; ?>
     </header>
     <main>
         <div class="pro-container">
             <div class="pro-left-side">
                 <div class="pro-profile_user">
                     <div class="pro-avt">
-                        <img src="../../assets/imgs/avt.jpg" alt="User's avatar">
+                        <img src="<?= htmlspecialchars($user->getUrl()) ?>" alt="User's avatar">
                     </div>
                     <div class="pro-detail-user">
                         <div class="pro-row">
                             <span class="label">Name:</span>
-                            <span class="value">Nguyen Dinh Truong</span>
+                            <span class="value"><?= htmlspecialchars($user->getName()) ?></span>
                         </div>
                         <div class="pro-row">
                             <span class="label">Birthday:</span>
-                            <span class="value">01/01/2000</span>
+                            <span class="value"><?= htmlspecialchars($user->getBirthday() ?? 'N/A') ?></span>
                         </div>
                         <div class="pro-row">
                             <span class="label">Address:</span>
-                            <span class="value">Hong Chau, Hai Phong, Hanoi, Vietnam</span>
+                            <span class="value"><?= htmlspecialchars($user->getAddress() ?? 'N/A') ?></span>
                         </div>
                         <div class="pro-row">
                             <span class="label">Work:</span>
-                            <span class="value">Software Engineer</span>
+                            <span class="value"><?= htmlspecialchars($user->getWork() ?? 'N/A') ?></span>
                         </div>
                         <div class="pro-row">
                             <span class="label">Email:</span>
-                            <span class="value">truong@example.com</span>
+                            <span class="value"><?= htmlspecialchars($user->getEmail()) ?></span>
                         </div>
                         <div class="pro-row">
                             <span class="label">Phone:</span>
-                            <span class="value">+84 123 456 789</span>
+                            <span class="value"><?= htmlspecialchars($user->getPhone() ?? 'N/A') ?></span>
                         </div>
                     </div>
 

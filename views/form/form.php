@@ -39,7 +39,7 @@
         <div class = "form-card">
             <div class = 'top-side'>
                 <img src="../../assets/imgs/icon1.png" alt="icon">
-                <?php if ($url === 'user/register'): ?>
+                <?php if ($url === '/form/form.php?page=login'): ?>
                     <span class="greeting" id="hi">Hi,my friend !</span>
                 <?php else: ?>
                     <span class="greeting" id="welcome">Welcome</span>

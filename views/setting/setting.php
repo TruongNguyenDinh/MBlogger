@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting</title>
     <link rel="stylesheet" href="../../assets/css/settingpage.css">
+    <?php include('../../controls/profilecontroller.php') ?>
 </head>
 <body>
     <header>

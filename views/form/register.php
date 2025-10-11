@@ -1,26 +1,26 @@
 <div class = "general-form">
-    <form method="post">
+    <form action="../../controls/registercontroller.php" method="post">
         <div class="title">
             <span id='title-login'>user registration</span>
         </div>
         <div class="input-group">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="username" placeholder="User name" required>
+            <input type="text" name="username" placeholder="User name" >
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-key"></i>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password" >
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-key"></i>
-            <input type="password" name="password_confirm" placeholder="Password again" required>
+            <input type="password" name="password_confirm" placeholder="Password again" >
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email"    >
         </div>
 
         <div id="action-section">
