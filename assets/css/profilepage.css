@@ -1,11 +1,48 @@
-body, html{
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.pro-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Cột trái */
+.pro-left-side {
+    flex: 1;
+    max-width: 250px;
+    height: calc(100vh - 20px);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px 8px 300px 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* Cột phải */
+.pro-main-side {
+    flex: 4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden; /* không cho*
+
 .pro-container {
     display: flex; /* đặt 2 div con nằm cạnh nhau */
     gap: 20px; /* khoảng cách giữa 2 cột */
 }
+
 
 /* Cột trái */
 .pro-left-side {
@@ -129,6 +166,7 @@ body, html{
 .pro-main-content{
     height:80vh;
     overflow-y: auto;
+    width: 100%;
 }
 .pro-editBtn {
     position: absolute;
@@ -150,5 +188,3 @@ body, html{
 .fcpContainer{
     position: fixed;
 }
-
-

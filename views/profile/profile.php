@@ -65,7 +65,6 @@
                     </div>
                 </div>
                 <div class="pro-link_and_website">
-
                 </div>
             </div>
             <div class="pro-main-side">
@@ -75,7 +74,7 @@
                 </div>
                 <div class="pro-main-content" id="pro-main-content"></div>
                 <div class="pro-main-post" style="display:none;"id="pro-main-post">
-                    <?php include('../components/post-card.php') ?>
+                    <?php $articles; include('../components/post-card.php') ?>
                 </div>
                 <div class="pro-editBtn">Edit</div>
             </div>
@@ -87,5 +86,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../../assets/js/profile.js"></script>
     <script src="../../assets/js/article.js"></script>
+    <script src="../../assets/js/renderRM.js"></script>
+    <script src="../../assets/js/utilities.js"></script>
 </body>
 </html>

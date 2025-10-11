@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1200px;
-  height: 500px;
+  width: 1300px;
+  height: 600px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -15,16 +15,32 @@
 
 /* Chia làm 2 vế */
 .fcp-left-side {
-    flex: 2;
+    flex: 3;
     background: #f9f9f9;
     border-right: 1px solid #ddd;
     padding: 10px;
     display: flex;
-    flex-direction: column; /* chia theo cột */
+    flex-direction: column;
     height: 100%;
     box-sizing: border-box;
+    overflow-y: auto; /* chỉ cuộn dọc */
+    overflow-x: hidden; /* tránh tràn ngang */
+}
+.fcp-left-side .container-post {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* container chiếm toàn bộ height của fcp-left-side */
+    overflow: hidden; /* để không tràn ra ngoài */
 }
 
+.fcp-left-side .article-content {
+    flex: 1;
+    max-height: calc(100% - 20px);
+    overflow-y: scroll;   /* vẫn cho cuộn dọc */
+    overflow-x: auto;     /* cho cuộn ngang nếu cần */
+    box-sizing: border-box;
+}
+/* Right */
 .fcp-right-side {
   flex: 1;                   /* chiếm 1 phần còn lại */
   display: flex;
@@ -89,17 +105,8 @@
   align-items: center;
   z-index: 9999;               /* nổi lên trên */
 }
-.fcp-left-side .container-post {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* container chiếm toàn bộ height của fcp-left-side */
-    overflow: hidden; /* để không tràn ra ngoài */
-}
 
-.fcp-left-side .article-content {
-    flex: 1;           /* phần content chiếm phần còn lại */
-    overflow-y: auto;  /* scroll nếu nội dung dài */
-}
+
 
 
 

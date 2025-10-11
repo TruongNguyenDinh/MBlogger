@@ -1,7 +1,11 @@
 <link rel="stylesheet" href="../../assets/css/flexcardpost.css">
 <div class="fcp-container">
     <div class="fcp-left-side">
-
+        <div class="container-post">
+            <div class="article-content">
+            <!-- nội dung README -->
+            </div>
+        </div>
     </div>
     <div class="fcp-right-side">
         <div class="fcp-comment">

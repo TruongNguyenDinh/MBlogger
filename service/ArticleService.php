@@ -14,7 +14,26 @@
         }
 
         public function indiviDualArti($id){
-
+            $articles = $this->articleRepo->findArticleByUserID($id);
+            $result = [];
+            foreach ($articles as $article) {
+                    // Lấy thông tin user
+                    $userInfo = $this->userRepo->findUserInfoById($article->getUserId());
+                    // Lấy thông tin repo
+                    $repoInfo = $this->repoRepo->findRepoById($article->getRepoId());
+                    // Gom dữ liệu lại
+                    $result[] = [
+                        "id" => $article->getId(),
+                        "username" => $userInfo ? $userInfo['fullname'] : 'Unknown',
+                        "url_avt" => $userInfo ? $userInfo['url_avt'] : null,
+                        "repo" => $repoInfo ? $repoInfo->getRepoName() : 'Unknown',
+                        "branch" => $repoInfo ? $repoInfo->getBranch() : 'main',
+                        "title" => $article->getTitle(),
+                        "content" => $article->getContent(),
+                        "acomment"=>$article->getComments()
+                    ];
+                }
+            return $result;
         }
         public function worldArti(): array {
             // Lấy 10 bài đăng mới nhất

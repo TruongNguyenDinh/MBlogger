@@ -1,15 +1,14 @@
 <link rel="stylesheet" href="../../assets/css/article.css">
-
 <?php foreach ($articles as $article): ?>
 <div class="container-post">
     <div class="article-header">
         <div class="article-user_info">
-            <div class="user-avt"></div>
+            <div class="user-avt"><img src="<?php echo ($article["url_avt"]); ?>" alt=""></div>
             <div class="username"><?php echo ($article["username"]); ?></div>
         </div>
         <div class="source-repo">Repo: <?php echo ($article["repo"]); ?></div>
         <div class="source-branch">Branch: <?php echo ($article["branch"]); ?></div>
-        <div class="btn-open">Open</div>
+        <div class="btn-open"><a href="">Open</a></div>
         <div class="article-id">ID: <?php echo $article["id"]; ?></div>
     </div>
     <div class="article-title">

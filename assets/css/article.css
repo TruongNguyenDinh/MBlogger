@@ -30,10 +30,19 @@
 }
 
 .user-avt {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #aaa;          /* giả avatar */
+    overflow: hidden;
+    position: relative;
+}
+
+.user-avt img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.2); /* phóng to ảnh 1.2 lần từ tâm */
+    transform-origin: center center; /* phóng từ tâm */
 }
 
 .username {

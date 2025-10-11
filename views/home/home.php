@@ -1,16 +1,12 @@
 <?php
-require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../controls/HomeController.php';
+// tạo controller và lấy dữ liệu
+$controller = new HomeController();
+$articles = $controller->getArticles();
 
-// Tạo kết nối database
-$conn = Database::getConnection();
-
-// Khởi tạo controller
-$controller = new HomeController($conn);
-
-// Gọi hàm lấy dữ liệu
-$data = $controller->renderHome();
-$articles = $data['results'];  // lấy mảng kết quả ra
+if (!$articles) {
+    echo "<pre style='color:red'>Không có dữ liệu bài viết!</pre>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +23,8 @@ $articles = $data['results'];  // lấy mảng kết quả ra
     </header>
     <main>
         <div class="feeds-side-home">
-            <?php 
+            <?php
+                // Truy cập trực tiếp qua mảng $data
                 include("../components/post-card.php");
             ?>
         </div>
@@ -46,5 +43,7 @@ $articles = $data['results'];  // lấy mảng kết quả ra
     </script>
     <script src="../../assets/js/home.js"></script>
     <script src="../../assets/js/article.js"></script>
+    <script src="../../assets/js/renderRM.js"></script>
+    <script src="../../assets/js/utilities.js"></script>
 </body>
 </html>
