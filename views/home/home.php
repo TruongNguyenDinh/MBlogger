@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/../../controls/HomeController.php';
+require_once __DIR__ .'/../../controls/newscontroller.php';
+// Dữ liệu ở news
+$controller = new Newscontroller();
+$thumbnails = $controller->getThumbnail();
+$details = $controller->getDetail();
 // tạo controller và lấy dữ liệu
 $controller = new HomeController();
 $articles = $controller->getArticles();

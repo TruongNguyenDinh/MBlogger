@@ -243,14 +243,26 @@ display: none;
 
 /* Left */
 .re-content {
-    margin-top: 10px;
-}
-
-.re-content {
+  display: flex;
+  flex-direction: column; /* sắp xếp dọc */
     flex: 1;                /* nếu nằm trong flex container thì sẽ chiếm hết */
     height: 90%;           /* cho container có chiều cao */
     display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    width: 100%;
 }
+#re-title {
+  height: 50px;
+  font-size: 16px;
+  resize: none; /* không cho kéo giãn */
+  padding:  10px 0 0 10px;
+}
+#re-title.active{
+  font-size: 20px;
+  font-weight: bold;
+}
+
 #previewBox {
   display: none;
   width: 100%;
@@ -261,6 +273,7 @@ display: none;
   box-sizing: border-box;
   background: #fff;
   overflow-y: auto;
+  font-size: 20px;
 }
 
 /* Áp dụng style GitHub */
@@ -294,8 +307,20 @@ display: none;
   white-space: pre-wrap; /* giữ xuống dòng */
 }
 
+.markdown-body {
+  background: transparent !important; /* bỏ nền trắng */
+  color: inherit; /* giữ nguyên màu chữ theo theme */
+}
 
-
+.markdown-body img {
+  display: block;
+  max-width: 300px;
+  height: 300px;
+  margin: 10px auto;
+  border-radius: 8px;
+  background: none !important; /* bỏ nền trắng */
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
 
 
 
