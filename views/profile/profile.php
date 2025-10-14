@@ -85,7 +85,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="../../assets/js/profile.js"></script>
-    <script src="../../assets/js/article.js"></script>
+    <script src="../../assets/js/popup.js"></script>
     <script src="../../assets/js/renderRM.js"></script>
     <script src="../../assets/js/utilities.js"></script>
 </body>

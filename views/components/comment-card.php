@@ -1,14 +1,13 @@
-<link rel="stylesheet" href="../../assets/css/commentcard.css">
-<?php foreach ($comments as $comment): ?>
+
 <div class="comment-card-container">
     <div class="ccn-top">
-        <div class="ccn-avt"></div>
+        <div class="ccn-avt"><img src="<?php echo htmlspecialchars($comment['url_avt']) ?>" alt=""></div>
         <div class="ccn-name">
-            <?php echo htmlspecialchars($comment['name']); ?>
+            <?php echo htmlspecialchars($comment['fullname']); ?>
         </div>
+        <div class="cnn-date"><?php echo htmlspecialchars($comment['created_at']) ?></div>
     </div>
     <div class="ccn-content">
-        <?php echo htmlspecialchars($comment['content']); ?>
+        <?= nl2br(htmlspecialchars($comment['content'])) ?>
     </div>
 </div>
-<?php endforeach; ?>

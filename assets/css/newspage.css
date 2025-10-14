@@ -22,7 +22,7 @@ main {
 }
 
 .news-modal {
-display: none;
+  display: none;
   position: relative;   /* để Back button bám theo khung modal */
   padding: 50px 20px 20px; /* chừa khoảng trống cho nút */
   background: #fff;
@@ -30,22 +30,22 @@ display: none;
   border-radius: 6px;
   margin: 20px auto;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 1000px;
 }
-
-
 /* Tab "who-post" */
 #who-post {
-  display: inline-block;
+  display: inline-block; /* ✅ để tab chỉ rộng theo nội dung */
   padding: 8px 16px;
   background: #f1f1f1;
   border: 1px solid #ccc;
-  border-bottom: none; /* nối liền với content bên dưới */
+  border-bottom: none; /* ✅ nối liền với nội dung bên dưới */
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   font-weight: bold;
   cursor: default;
   position: relative;
-  top: 1px; /* để ăn khớp với viền #news-detail */
+  top: 1px; /* căn chỉnh viền ăn khớp */
+  left: 0;  /* ✅ nằm góc trái */
 }
 
 /* Khung nội dung chính */
@@ -55,7 +55,11 @@ display: none;
   border-radius: 0 6px 6px 6px; /* bo góc trừ phía trên trái/phải đã có who-post */
   min-height: 150px;
   background: #fafafa;
+  max-width: 1000px;
+  margin: 0 auto;
 }
+
+
 #backBtn {
   position: absolute;
   top: 10px;

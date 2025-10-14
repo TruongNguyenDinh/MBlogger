@@ -1,19 +1,22 @@
 <link rel="stylesheet" href="../../assets/css/flexcardpost.css">
-<div class="fcp-container">
+<link rel="stylesheet" href="../../assets/css/commentcard.css">
+<div class="fcp-container" data-current-id="">
     <div class="fcp-left-side">
         <div class="container-post">
             <div class="article-content">
-            <!-- nội dung README -->
             </div>
         </div>
     </div>
     <div class="fcp-right-side">
         <div class="fcp-comment">
-            <?php include("../components/comment-card.php"); ?>
+            <?php include(__DIR__ . "/comment-card.php"); ?>
         </div>
         <div class="fcp-wcomment">
-            <textarea id="wcomment" placeholder="write your comment here ..."></textarea>
-            <button>send</button>
+            <form method="POST" action="../../controls/commentcontroller.php">
+                <input type="hidden" name="article_id" value="<?= $article_id ?>">  
+                <textarea id="wcomment" name="wcomment" placeholder="Write your comment here ..."></textarea>
+                <button type="submit">Send</button>
+            </form>
         </div>
     </div>
 </div>

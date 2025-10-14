@@ -21,8 +21,6 @@
     background-color: #fff;  /* nền trắng khi ảnh nhỏ hơn khung */
     display: block;
 }
-.markdown-body {
-  background: transparent !important; /* bỏ nền trắng */
-  color: inherit; /* giữ nguyên màu chữ theo theme */
-}
+
+
 

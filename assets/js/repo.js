@@ -1,6 +1,7 @@
 let currentPath = "User >> Reference";
 const repoOwner = "TruongNguyenDinh";
 let repoName = "";
+
 const branchSelect = document.getElementById("branch-select");
 const folderTree = document.getElementById("repo-folder-tree");
 const dynamicPath = document.querySelector(".dynamic-path");

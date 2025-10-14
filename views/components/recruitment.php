@@ -1,6 +1,3 @@
-<?php
-header("Content-Type: text/html; charset=UTF-8");
-?>
 <form id="newsForm">
   <div class="recuit-container">
     <div class="re-left">

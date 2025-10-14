@@ -1,5 +1,6 @@
 <?php
 $username = "TruongNguyenDinh";
+
 $url = "https://api.github.com/users/$username/repos";
 
 // --- Gọi API lấy danh sách repo ---

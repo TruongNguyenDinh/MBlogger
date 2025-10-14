@@ -47,7 +47,7 @@ if (!$articles) {
         const articles = <?php echo json_encode($articles, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
     </script>
     <script src="../../assets/js/home.js"></script>
-    <script src="../../assets/js/article.js"></script>
+    <script src="../../assets/js/popup.js"></script>
     <script src="../../assets/js/renderRM.js"></script>
     <script src="../../assets/js/utilities.js"></script>
 </body>
