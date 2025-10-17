@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include '../../service/get_repos.php'; ?>
+                            <?php include '../../controls/RepoController.php'; ?>
                         </tbody>
                     </table>
                 </div>

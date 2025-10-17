@@ -76,7 +76,7 @@
                 <div class="pro-main-post" style="display:none;"id="pro-main-post">
                     <?php $articles; include('../components/post-card.php') ?>
                 </div>
-                <div class="pro-editBtn">Edit</div>
+                <div class="pro-editBtn"> <a href="http://localhost/mblogger/views/setting/setting.php?page=account">Edit</a></div>
             </div>
             <div class="fcpContainer" id="fcpContainer" style="display:none;">
                 <?php include("../components/flex-card-post.php")?>

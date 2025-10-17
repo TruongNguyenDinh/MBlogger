@@ -67,6 +67,14 @@ class UserRepository {
         ");
         return $stmt->execute([$fullname, $birthday, $email, $uwork, $phone, $role, $address, $id]);
     }
+    public function changeStatus($id,$status){
+        $stmt = $this->conn->prepare("
+            UPDATE users
+            SET github_status = ?
+            WHERE id = ?
+        ");
+        return $stmt->execute([$status,$id]);
+    }
 
 
 }
