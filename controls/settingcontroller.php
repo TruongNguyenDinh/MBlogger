@@ -43,16 +43,12 @@ class SettingController {
             $id, $fullname, $email, $phone, $birthday, $work, $role, $address );
 
         // Trả JSON
-        
-        
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 }
 
 $controller = new SettingController();
 $controller->updateAccount();
-$status_git = $this->userService->getUserById($id)->getGithubStatus();
-include __DIR__.'/../views/setting/setting.php';
 // 🧹 Xóa mọi output rác (PHP warning chẳng hạn)
 ob_end_flush();
 exit;
