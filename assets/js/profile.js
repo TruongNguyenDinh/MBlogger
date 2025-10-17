@@ -1,8 +1,31 @@
-fetch("https://raw.githubusercontent.com/TruongNguyenDinh/TruongNguyenDinh/main/README.md")
-    .then(res => res.text())
-    .then(md => {
+
+let repoOwner = "";
+
+fetch("../../api/get_github_info.php")
+  .then(res => {
+    console.log("📥 Raw response:", res);
+    return res.text(); // lấy text để debug
+  })
+  .then(txt => {
+    console.log("📄 Response text:", txt);
+    try {
+      const data = JSON.parse(txt);
+      repoOwner = data.username;
+
+      // Sau khi đã có repoOwner mới fetch README
+      return fetch(`https://raw.githubusercontent.com/${repoOwner}/${repoOwner}/main/README.md`);
+    } catch (err) {
+      console.error("❌ JSON parse error:", err);
+    }
+  })
+  .then(res => res.text())
+  .then(md => {
+    if (md) {
       document.getElementById("pro-main-content").innerHTML = marked.parse(md);
-});
+    }
+  })
+  .catch(err => console.error("🚫 Fetch error:", err));
+
 // Chuyển tab
 const tabs = document.querySelectorAll(".pro-title-tab div");
 const mainContent = document.getElementById("pro-main-content");

@@ -181,6 +181,10 @@ html, body {
     font-size: 14px;
     transition: background-color 0.3s;
 }
+.pro-editBtn a{
+    text-decoration: none;
+    color: white;
+}
 
 .pro-editBtn:hover {
     background-color: #0056b3;

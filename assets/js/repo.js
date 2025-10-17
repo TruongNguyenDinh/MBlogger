@@ -1,7 +1,5 @@
 let currentPath = "User >> Reference";
-const repoOwner = "TruongNguyenDinh";
 let repoName = "";
-
 const branchSelect = document.getElementById("branch-select");
 const folderTree = document.getElementById("repo-folder-tree");
 const dynamicPath = document.querySelector(".dynamic-path");
@@ -12,6 +10,28 @@ const branchBox = document.querySelector(".repo-folder-branch");
 
 // Lưu URL ban đầu để khi đóng popup có thể trả về
 let originalUrl = window.location.origin + window.location.pathname; // luôn là URL gốc
+
+let repoOwner = "";
+let GITHUB_TOKEN = "";
+
+fetch("../../api/get_github_info.php")
+  .then(res => {
+    console.log("📥 Raw response:", res);
+    return res.text(); // lấy text để xem có gì lạ (ví dụ lỗi warning PHP)
+  })
+  .then(txt => {
+    console.log("📄 Response text:", txt);
+    try {
+      const data = JSON.parse(txt);
+      repoOwner = data.username;
+      GITHUB_TOKEN = data.token;
+      console.log("✅ Parsed data:", data);
+    } catch (err) {
+      console.error("❌ JSON parse error:", err);
+    }
+  })
+  .catch(err => console.error("🚫 Fetch error:", err));
+
 
 function loadBranches(repo) {
     branchSelect.innerHTML = `<option>Đang tải...</option>`;
