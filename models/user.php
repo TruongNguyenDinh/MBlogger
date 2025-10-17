@@ -34,19 +34,19 @@ class User {
     public function setRole(string $newRole): void { $this->role = $newRole; }
 
     // --------- Getters ----------
-    public function getId() { return $this->id; }
-    public function getUsername(){ return $this->username; }
-    public function getName() { return $this->fullname; }
-    public function getBirthday() { return $this->birthday; }
-    public function getAddress(){ return $this->address; }
-    public function getWork(){ return $this->work; }
-    public function getEmail() { return $this->email; }
-    public function getPhone(){ return $this->phone; }
-    public function getAvatar(){ return $this->url_avt; }
-    public function getRole() { return $this->role; }
-    public function getGithubStatus() { return $this->github_status; }
-    public function getCreatedAt(){ return $this->create_at; }
-    public function getUrl() { return $this->url_avt; }
-    public function getPasswordHash() { return $this->password_hash;}
+    public function getId():mixed { return $this->id; }
+    public function getUsername(): mixed{ return $this->username; }
+    public function getName(): string { return $this->fullname; }
+    public function getBirthday(): string { return $this->birthday; }
+    public function getAddress(): string{ return $this->address; }
+    public function getWork(): string{ return $this->work; }
+    public function getEmail(): string { return $this->email; }
+    public function getPhone(): string{ return $this->phone; }
+    public function getAvatar(): mixed{ return $this->url_avt; }
+    public function getRole(): string { return $this->role; }
+    public function getGithubStatus(): string { return $this->github_status; }
+    public function getCreatedAt(): mixed{ return $this->create_at; }
+    public function getUrl(): mixed { return $this->url_avt; }
+    public function getPasswordHash(): mixed { return $this->password_hash;}
 }
 ?>

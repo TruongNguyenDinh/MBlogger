@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="../../assets/css/settingelem.css">
+
+<link rel="stylesheet" href="../../assets/css/githubpage.css">
 <div class="account-container">
     <div class="top-side">
         <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
@@ -7,9 +8,13 @@
         <div class="row-content">
             <div class="left-input">
                 <button>Github >></button>
-                <div class="connected active">You connected</div>
-                <div class="unconnect">You haven't connected to Github</div>
+                <?php if (!empty($status_git)): ?>
+                    <div class="connected active">You connected</div>
+                <?php else: ?>
+                    <div class="unconnect active">You haven't connected to Github</div>
+                <?php endif; ?>
             </div>
+
         </div>
         <div class="row-content">
             <div class="left-input">

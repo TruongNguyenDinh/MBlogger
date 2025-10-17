@@ -44,5 +44,45 @@ class UserService {
     public function getUserById($id): ?User {
         return $this->userRepo->findById($id);
     }
+    public function updateUser($id, $fullname, $email, $phone, $birthday, $work, $role, $address) {
+        // Kiểm tra ID
+            if (!$id) {
+                echo json_encode(['status' => 'error', 'message' => 'Không xác định được người dùng.']);
+                return;
+            }
+
+            // Kiểm tra rỗng
+            if (empty($fullname) || empty($birthday) || empty($email) || empty($work) || empty($phone) || empty($address)) {
+                echo json_encode(['status' => 'error', 'message' => 'Vui lòng điền đầy đủ thông tin.']);
+                return;
+            }
+            // 🔹 Kiểm tra role hợp lệ
+            $validRoles = ['person', 'company', 'employer'];
+            if (!in_array(strtolower($role), $validRoles)) {
+                
+                return ['success' => false, 'message' => 'Role không hợp lệ. Chỉ được: person, company hoặc employer.'];
+            }
+
+            // 3️⃣ Kiểm tra số điện thoại (chỉ chứa số)
+            if (!preg_match('/^[0-9]+$/', $phone)) {
+                return ['success' => false, 'message' => 'Phone number must contain only digits.'];
+            }
+
+            // Kiểm tra định dạng email
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo json_encode(['status' => 'error', 'message' => 'Email không hợp lệ.']);
+                return;
+            }
+
+            // Gọi service cập nhật (bạn thay bằng hàm thật của mình)
+            
+            $success = $this->userRepo->updateUser($id, $fullname, $birthday, $email, $work, $phone, $role, $address);
+            if ($success) {
+                return ['success' => true, 'message' => 'Cập nhật tài khoản thành công.'];
+            } else {
+                return ['success' => false, 'message' => 'Cập nhật thất bại, vui lòng thử lại.'];
+            }
+        }
+
 }
 ?>

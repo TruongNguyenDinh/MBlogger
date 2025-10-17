@@ -16,7 +16,6 @@ try {
     $user = $service->getUserById($userId);
     // Bài đăng cá nhân
     $articles = $artiService->indiviDualArti($user->getId());
-    
 } catch (Exception $e) {
     die("Lỗi: " . $e->getMessage());
 }

@@ -59,6 +59,15 @@ class UserRepository {
 
         return $row; // trả về mảng ['fullname' => ..., 'url_avt' => ...]
     }
+    public function updateUser($id, $fullname, $birthday, $email, $uwork, $phone, $role, $address) {
+        $stmt = $this->conn->prepare("
+            UPDATE users 
+            SET fullname = ?, birthday = ?, email = ?, uwork = ?, phone = ?, role = ?, address = ?
+            WHERE id = ?
+        ");
+        return $stmt->execute([$fullname, $birthday, $email, $uwork, $phone, $role, $address, $id]);
+    }
+
 
 }
 ?>

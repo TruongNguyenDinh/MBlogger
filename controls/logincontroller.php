@@ -17,14 +17,21 @@ $service = new UserService($conn);
 $result = $service->checkLogin($username, $password);
 
 if ($result['success']) {
+    $user = $result['user'];
     $_SESSION['user'] = [
-        'id' => $result['user']->getId(),
-        'fullname' => $result['user']->getName(),
-        'role' => $result['user']->getRole()
+        'id' => $user->getId(),
+        'fullname' => $user->getName(),
+        'role' => $user->getRole(),
+        'email' => $user->getEmail(),
+        'phone' => $user->getPhone(),
+        'birthday' => $user->getBirthday(),
+        'work' => $user->getWork(),
+        'address' => $user->getAddress()
     ];
     header("Location: $basePath/home/home.php");
     exit;
-} else {
+}
+ else {
     $_SESSION['error'] = $result['message'];
     header("Location: $basePath/form/form.php");
     exit;
