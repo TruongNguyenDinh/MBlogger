@@ -47,19 +47,16 @@ class UserService {
     public function updateUser($id, $fullname, $email, $phone, $birthday, $work, $role, $address) {
         // Kiểm tra ID
             if (!$id) {
-                echo json_encode(['status' => 'error', 'message' => 'Không xác định được người dùng.']);
-                return;
+                return ['status' => false, 'message' => 'Không xác định được người dùng.'];
             }
 
             // Kiểm tra rỗng
             if (empty($fullname) || empty($birthday) || empty($email) || empty($work) || empty($phone) || empty($address)) {
-                echo json_encode(['status' => 'error', 'message' => 'Vui lòng điền đầy đủ thông tin.']);
-                return;
+                return ['status' => 'error', 'message' => 'Vui lòng điền đầy đủ thông tin.'];
             }
             // 🔹 Kiểm tra role hợp lệ
             $validRoles = ['person', 'company', 'employer'];
             if (!in_array(strtolower($role), $validRoles)) {
-                
                 return ['success' => false, 'message' => 'Role không hợp lệ. Chỉ được: person, company hoặc employer.'];
             }
 
@@ -70,8 +67,7 @@ class UserService {
 
             // Kiểm tra định dạng email
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo json_encode(['status' => 'error', 'message' => 'Email không hợp lệ.']);
-                return;
+                return ['success' => false, 'message' => 'Lỗi định dang email.'];
             }
 
             // Gọi service cập nhật (bạn thay bằng hàm thật của mình)
@@ -82,7 +78,10 @@ class UserService {
             } else {
                 return ['success' => false, 'message' => 'Cập nhật thất bại, vui lòng thử lại.'];
             }
-        }
+    }
+    public function changeStatus($id,$status){
+        return $this->userRepo->changeStatus($id,$status);
+    }
 
 }
 ?>
