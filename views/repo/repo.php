@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <?php include('../header/header.html')?>
+        <?php include('../header/header.php')?>
     </header>
     <main>
        <div class="repo-container">
@@ -52,7 +52,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include '../../service/get_repos.php'; ?>
+                            <?php include '../../controls/RepoController.php'; ?>
                         </tbody>
                     </table>
                 </div>
@@ -64,6 +64,7 @@
         </div>
     </main>
     <script src="../../assets/js/repo.js"></script>
+    <script src="../../assets/js/sendArticle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>

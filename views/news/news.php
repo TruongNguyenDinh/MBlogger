@@ -1,3 +1,10 @@
+<?php
+    header("Content-Type: text/html; charset=UTF-8");
+    require_once __DIR__ .'/../../controls/newscontroller.php';
+    $controller = new Newscontroller();
+    $thumbnails = $controller->getThumbnail();
+    $details = $controller->getDetail();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +19,7 @@
 </head>
 <body>
     <header>
-        <?php include("../header/header.html") ?>
+        <?php include("../header/header.php") ?>
     </header>
     <main>
         <div class="news-card">
@@ -35,5 +42,8 @@
         </div>
     </main>
     <script src="../../assets/js/news.js"></script>
+    <script src="../../assets/js/redirect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.js"></script>
+
 </body>
 </html>

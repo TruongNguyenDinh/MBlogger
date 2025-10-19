@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const newsId = url.searchParams.get("query-newsID");
 
   if (newsId) {
-    fetch("../../controls/get_news.php?id=" + newsId)
+    fetch("../../views/components/news-detail.php?id=" + newsId)
       .then(res => res.json())
       .then(data => {
         document.querySelector(".news-card").style.display = "none";
@@ -37,17 +37,27 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".group_btns").style.display = "none";
         document.getElementById("more-btn").style.display = "none";
 
-        document.getElementById("who-post").innerHTML = `<strong>${data.author}</strong>, ${data.date}`;
-        document.getElementById("news-detail").innerHTML = `<h2>${data.title}</h2><p>${data.content}</p>`;
+        document.getElementById("who-post").innerHTML = `
+          <strong>${data.author}</strong>, ${data.date}
+        `;
+
+        // ✅ Chuyển Markdown → HTML
+        const htmlContent = marked.parse(data.content);
+
+        document.getElementById("news-detail").innerHTML = `
+          <h2>${data.title}</h2>
+          <div class="markdown-body">${htmlContent}</div>
+        `;
       });
   }
-  // Nếu có query-recruitment thì mở form tuyển dụng
+
   if (url.searchParams.get("query-recruitment") === "true") {
     document.querySelector(".news-card").style.display = "none";
     document.querySelector(".recruitment-news").style.display = "block";
     document.querySelector(".news-scene_more").style.display = "none";
   }
 });
+
 
 
 // Gắn Back 1 lần duy nhất
@@ -125,55 +135,61 @@ document.getElementById("bannerInput").addEventListener("change", function (e) {
     reader.readAsDataURL(file);
   }
 });
-// Chuyển giữa text và markdown
-  // Tab
-  const rawTab = document.getElementById("tab-raw");
-  const previewTab = document.getElementById("tab-preview");
-  const textarea = document.getElementById("re-content");
-  const previewBox = document.getElementById("previewBox");
+//
+const rawTab = document.getElementById("tab-raw");
+const previewTab = document.getElementById("tab-preview");
+const textarea = document.getElementById("re-content");
+const titlearea = document.getElementById("re-title");
+const previewBox = document.getElementById("previewBox");
 
-  // Markdown converter
-  const converter = new showdown.Converter({
-    tables: true,
-    strikethrough: true,
-    ghCodeBlocks: true, // hỗ trợ code block kiểu ```lang
+// Markdown converter
+const converter = new showdown.Converter({
+  tables: true,
+  strikethrough: true,
+  ghCodeBlocks: true,
+});
+
+// Khi nhấn tab Raw (soạn thảo)
+rawTab.addEventListener("click", () => {
+  rawTab.classList.add("active");
+  previewTab.classList.remove("active");
+  
+  titlearea.classList.remove("active");
+  titlearea.removeAttribute("readonly"); // cho nhập lại tiêu đề
+
+  textarea.style.display = "block";
+  textarea.removeAttribute("readonly"); // cho nhập nội dung
+  previewBox.style.display = "none";
+});
+
+// Khi nhấn tab Preview (xem trước)
+previewTab.addEventListener("click", () => {
+  previewTab.classList.add("active");
+  rawTab.classList.remove("active");
+
+  titlearea.classList.add("active");
+  titlearea.setAttribute("readonly", true); // ❌ không cho nhập tiêu đề
+
+  textarea.style.display = "none";
+  textarea.setAttribute("readonly", true); // ❌ không cho nhập nội dung
+  previewBox.style.display = "block";
+
+  // Convert Markdown
+  const html = converter.makeHtml(textarea.value);
+  previewBox.innerHTML = html;
+  previewBox.classList.add("markdown-body");
+
+  // Highlight tất cả code trong preview
+  previewBox.querySelectorAll("pre code").forEach((block) => {
+    hljs.highlightElement(block);
   });
 
-  rawTab.addEventListener("click", () => {
-    rawTab.classList.add("active");
-    previewTab.classList.remove("active");
-
-    textarea.style.display = "block";
-    previewBox.style.display = "none";
+  // Tự động mở liên kết trong tab mới
+  previewBox.querySelectorAll('a[href^="http"]').forEach(link => {
+    link.setAttribute('target', '_blank');
   });
+});
 
-  previewTab.addEventListener("click", () => {
-    previewTab.classList.add("active");
-    rawTab.classList.remove("active");
-
-    textarea.style.display = "none";
-    previewBox.style.display = "block";
-
-    // Convert Markdown
-    // Convert Markdown (đẹp như GitHub)
-    const converter = new showdown.Converter({
-      tables: true,
-      strikethrough: true,
-      ghCodeBlocks: true,
-    });
-    const html = converter.makeHtml(textarea.value);
-    const preview = document.getElementById("previewBox");
-    preview.innerHTML = html;
-    preview.classList.add("markdown-body");
-
-    // Highlight tất cả code trong preview
-    previewBox.querySelectorAll("pre code").forEach((block) => {
-      hljs.highlightElement(block);
-    });
-    document.querySelectorAll('a[href^="http"]').forEach(link => {
-      link.setAttribute('target', '_blank');
-    });
-  });
 
 
 

@@ -1,17 +1,26 @@
 .news-card_elem {
-    max-width: 100%;
+    width: 100%;
     border-radius: 6px;
-    overflow: hidden;         /* ảnh không tràn ra ngoài */
+    overflow: hidden;
     margin-bottom: 10px;
-}
-.news-card_elem:hover {
-    transform: scale(1.02);     /* phóng to nhẹ */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    background: #fff;
     transition: all 0.3s ease;
+    text-align: center; /* căn giữa ảnh nhỏ */
+}
+
+.news-card_elem:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     cursor: pointer;
 }
+
 .news-card_elem img {
-    width: 100%;              /* khớp chiều rộng cha */
-    height: auto;             /* giữ tỉ lệ */
-    display: block;           /* tránh khoảng trắng dưới ảnh */
+    width: 100%;
+    height: 300px;           /* cố định chiều cao khung ảnh */
+    object-fit: contain;     /* giữ nguyên ảnh, không cắt */
+    background-color: #fff;  /* nền trắng khi ảnh nhỏ hơn khung */
+    display: block;
 }
+
+
+

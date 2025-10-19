@@ -1,8 +1,8 @@
-/* Toàn bộ khung account */
+/* Khung chính */
 .account-container {
   display: flex;
-  flex-direction: column;  /* xếp theo cột */
-  width: 100%;             /* chiếm hết chiều rộng cha */
+  flex-direction: column;
+  width: 100%;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -10,40 +10,48 @@
   box-sizing: border-box;
 }
 
-/* Phần trên */
+/* Tiêu đề */
 .top-side {
   margin-bottom: 15px;
   font-weight: bold;
 }
 
-/* Basic info */
+/* Nội dung cơ bản */
 .basic-content {
   display: flex;
-  flex-direction: column; /* các row xếp dọc */
-  gap: 12px;              /* khoảng cách giữa các row */
+  flex-direction: column;
+  gap: 18px;
 }
 
-/* Mỗi row gồm trái và phải */
+/* Mỗi dòng có 2 phần */
 .row-content {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
-/* Trái dài hơn */
+/* Trái dài hơn phải */
 .left-input {
-  flex: 2;   /* chiếm nhiều hơn */
+  flex: 2;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .right-input {
-  flex: 1;   /* ngắn hơn */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-/* Input và select chung style */
+/* Label */
+.left-input label,
+.right-input label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Input và select */
 .left-input input,
 .right-input input,
 .right-input select {
@@ -52,113 +60,29 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
-}
-
-/* Label căn trên select */
-.right-input label {
-  margin-bottom: 5px;
   font-size: 14px;
-  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
-/* Advantage button */
-.adv-btn {
-  margin-top: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #007bff;
-  user-select: none;
+/* Hiệu ứng khi focus */
+.left-input input:focus,
+.right-input input:focus,
+.right-input select:focus {
+  border-color: #3498db;
+  background-color: #fff;
+  outline: none;
 }
 
-.adv-btn:hover {
-  text-decoration: underline;
+/* Khi ở chế độ không chỉnh sửa */
+.basic-content input[readonly],
+.basic-content select[disabled],
+.basic-content input:disabled {
+  background-color: #f0f0f0;
+  pointer-events: none;
 }
 
-/* Advantage content */
-.adv-content {
-  margin-top: 10px;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-  display: none; /* mặc định ẩn */
-}
-/* Colab to Github */
-/* Button Github */
-/* Button Github */
-.left-input button {
-  padding: 8px 14px;
-  background-color: #24292f;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.left-input button:hover {
-  background-color: #444c56;
-}
-
-/* Status */
-.left-input .connected,
-.left-input .unconnect {
-  margin-left:10px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  display: none; /* ẩn mặc định */
-}
-
-/* Hiện khi có active */
-.left-input .connected.active,
-.left-input .unconnect.active {
-  display: inline-block;
-}
-
-/* Style connected */
-.left-input .connected {
-  background-color: #e6ffed;
-  color: #22863a;
-  border: 1px solid #34d058;
-}
-
-/* Style unconnected */
-.left-input .unconnect {
-  background-color: #ffeef0;
-  color: #d73a49;
-  border: 1px solid #f97583;
-}
-
-/* Change connection link */
-.change-con {
-  font-size: 14px;
-  color: #0366d6;
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.2s;
-}
-
-.change-con:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-.right-input .connected.active,
-.right-input .unconnect.active {
-  display: block;
-}
-#gitusername {
-  width: fit-content;
-}
-.github-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px; /* khoảng cách giữa label và input */
-}
-
-.github-info label {
-  font-weight: bold;
-}
-/* Button edit và save */
-/* Nút edit và save cố định góc phải dưới */
+/* Nút chỉnh sửa */
 .group-btns {
   position: fixed;
   bottom: 20px;
@@ -167,7 +91,7 @@
   gap: 10px;
 }
 
-#edit-btn, 
+#edit-btn,
 #save-btn {
   padding: 8px 16px;
   border: none;
@@ -191,14 +115,57 @@
   cursor: not-allowed;
 }
 
-/* Input mặc định không chỉnh sửa */
 .basic-content input,
 .basic-content select {
-  pointer-events: none;    /* chặn bấm */
+  pointer-events: none;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
 }
+  
+.role-select {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+.role-select input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s, background-color 0.2s;
+}
 
+.role-select input:focus {
+  border-color: #3498db;
+  background-color: #fff;
+  outline: none;
+}
 
+.role-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.role-options div {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.role-options div:hover {
+  background: #f0f0f0;
+}
 

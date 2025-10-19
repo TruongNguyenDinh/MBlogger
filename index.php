@@ -1,12 +1,6 @@
 <?php
-    //Kiểm tra 
-    session_start();
-    // Nếu đã đăng nhập
-    if(isset($_SESSION['user_id'])){
-        header("Location: dashboard.php");
-        exit();
-    }
-    // Nếu chưa đăng nhập
-    header("Location: ./views/form.php");
-    exit();
+require_once __DIR__ . '/controls/HomeController.php';
+$conn = Database::getConnection();
+$controller = new HomeController($conn);
+$controller->index();
 ?>

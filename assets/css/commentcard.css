@@ -33,3 +33,47 @@
     color: #333;
     white-space: pre-wrap;  /* giữ xuống dòng trong text */
 }
+
+.comment-card-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    font-family: sans-serif;
+}
+
+.ccn-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.ccn-avt {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ccn-avt img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ccn-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+.cnn-date {
+  margin-left: auto;       /* đẩy sang phải */
+  font-size: 12px;         /* nhỏ hơn tên */
+  color: #888;             /* màu xám nhẹ */
+  font-weight: 400;
+}

@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting</title>
     <link rel="stylesheet" href="../../assets/css/settingpage.css">
+    <?php include('../../controls/profilecontroller.php') ?>
 </head>
 <body>
     <header>
-        <?php include("../header/header.html") ?>
+        <?php include("../header/header.php") ?>
     </header>
     <main>
         <div class="setting-container">

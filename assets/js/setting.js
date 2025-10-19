@@ -1,39 +1,130 @@
-document.getElementById('adv-btn1').addEventListener("click",()=>{
-    document.getElementById("adv-content").style.display='block';
-    document.getElementById("adv-btn1").style.display='none';
-    document.getElementById("adv-btn2").style.display='block';
+// --- Nút "Advantage" ---
+document.getElementById('adv-btn1').addEventListener("click", () => {
+  document.getElementById("adv-content").style.display = 'block';
+  document.getElementById("adv-btn1").style.display = 'none';
+  document.getElementById("adv-btn2").style.display = 'block';
 });
-document.getElementById('adv-btn2').addEventListener("click",()=>{
-    document.getElementById("adv-content").style.display='none';
-    document.getElementById("adv-btn1").style.display='block';
-    document.getElementById("adv-btn2").style.display='none';
+
+document.getElementById('adv-btn2').addEventListener("click", () => {
+  document.getElementById("adv-content").style.display = 'none';
+  document.getElementById("adv-btn1").style.display = 'block';
+  document.getElementById("adv-btn2").style.display = 'none';
 });
-// Cho phép sửa thông tin cá nhân
+
+// --- Xử lý Edit / Save ---
 const editBtn = document.getElementById("edit-btn");
 const saveBtn = document.getElementById("save-btn");
 const inputs = document.querySelectorAll(".basic-content input, .basic-content select");
 
-editBtn.addEventListener("click", () => {
+// 🔒 Khóa tất cả ô khi load trang
+window.addEventListener("DOMContentLoaded", () => {
   inputs.forEach(el => {
-    el.removeAttribute("readonly");
-    el.removeAttribute("disabled");
-    el.style.pointerEvents = "auto";
-    el.style.backgroundColor = "white";
-  });
-  saveBtn.removeAttribute("disabled");
-});
-
-saveBtn.addEventListener("click", () => {
-  inputs.forEach(el => {
-    el.setAttribute("readonly", true);
     if (el.tagName === "SELECT") {
-      el.setAttribute("disabled", true);
+      el.disabled = true;
+    } else {
+      el.readOnly = true;
     }
     el.style.pointerEvents = "none";
     el.style.backgroundColor = "#f0f0f0";
   });
-  saveBtn.setAttribute("disabled", true);
+  saveBtn.disabled = true;
 });
+
+// ✏️ Khi nhấn "Edit" → mở khóa
+editBtn.addEventListener("click", () => {
+  inputs.forEach(el => {
+    if (el.tagName === "SELECT") {
+      el.disabled = false;
+    } else {
+      el.readOnly = false;
+    }
+    el.style.pointerEvents = "auto";
+    el.style.backgroundColor = "white";
+  });
+  saveBtn.disabled = false;
+});
+
+// 💾 Khi nhấn "Save" → khóa lại
+saveBtn.addEventListener("click", () => {
+  inputs.forEach(el => {
+    if (el.tagName === "SELECT") {
+      el.disabled = true;
+    } else {
+      el.readOnly = true;
+    }
+    el.style.pointerEvents = "none";
+    el.style.backgroundColor = "#f0f0f0";
+  });
+  saveBtn.disabled = true;
+});
+//
+document.addEventListener("DOMContentLoaded", () => {
+  const saveBtn = document.getElementById("save-btn");
+  const input = document.getElementById("roleInput");
+  const optionsBox = document.getElementById("roleOptions");
+
+  
+
+  // ✅ Khi click vào input → hiện dropdown
+  input.addEventListener("click", (e) => {
+    e.stopPropagation(); // tránh bị đóng ngay
+    optionsBox.style.display =
+      optionsBox.style.display === "block" ? "none" : "block";
+  });
+
+  // ✅ Khi chọn một option → ghi vào input
+  optionsBox.querySelectorAll("div").forEach(opt => {
+    opt.addEventListener("click", () => {
+      input.value = opt.dataset.value;
+      optionsBox.style.display = "none";
+    });
+  });
+
+  // ✅ Ẩn dropdown khi click ra ngoài
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".role-select")) {
+      optionsBox.style.display = "none";
+    }
+  });
+
+  // ✅ Khi nhấn Save → AJAX lưu
+  saveBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const form = document.getElementById("account-form");
+    const formData = new FormData(form);
+
+    for (const [key, value] of formData.entries()) {
+      console.log(`📦 ${key}: ${value}`);
+    }
+
+    fetch("../../controls/settingcontroller.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          alert(data.message);
+          document
+            .querySelectorAll(".basic-content input")
+            .forEach((el) => {
+              el.setAttribute("readonly", true);
+              el.style.pointerEvents = "none";
+              el.style.backgroundColor = "#f0f0f0";
+            });
+        } else {
+          alert("Lỗi: " + data.message);
+        }
+      })
+      .catch((err) => {
+        console.error("❌ Fetch error:", err);
+        alert("Có lỗi xảy ra khi gửi dữ liệu!");
+      });
+  });
+});
+
+
 
 
 

@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1200px;
-  height: 500px;
+  width: 1300px;
+  height: 600px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -15,16 +15,32 @@
 
 /* Chia làm 2 vế */
 .fcp-left-side {
-    flex: 2;
+    flex: 3;
     background: #f9f9f9;
     border-right: 1px solid #ddd;
     padding: 10px;
     display: flex;
-    flex-direction: column; /* chia theo cột */
+    flex-direction: column;
     height: 100%;
     box-sizing: border-box;
+    overflow-y: auto; /* chỉ cuộn dọc */
+    overflow-x: hidden; /* tránh tràn ngang */
+}
+.fcp-left-side .container-post {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* container chiếm toàn bộ height của fcp-left-side */
+    overflow: hidden; /* để không tràn ra ngoài */
 }
 
+.fcp-left-side .article-content {
+    flex: 1;
+    max-height: calc(100% - 20px);
+    overflow-y: scroll;   /* vẫn cho cuộn dọc */
+    overflow-x: auto;     /* cho cuộn ngang nếu cần */
+    box-sizing: border-box;
+}
+/* Right */
 .fcp-right-side {
   flex: 1;                   /* chiếm 1 phần còn lại */
   display: flex;
@@ -41,29 +57,55 @@
 }
 
 /* Ô nhập ở cuối */
+.fcp-right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.fcp-comment {
+  flex: 1;                 /* chiếm toàn bộ phần còn lại */
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+/* Đặt form dính đáy */
 .fcp-wcomment {
+  margin-top: auto;        /* đẩy phần này xuống đáy cột */
+  padding: 8px 0 0 0;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+/* Bố cục form */
+.fcp-wcomment form {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 8px 0 0 0;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .fcp-wcomment textarea {
   flex: 1 1 auto;
   min-width: 200px;
-  min-height: 28px;   /* giảm chiều cao */
-  max-height: 120px;  /* bớt tối đa để gọn */
-  padding: 6px 8px;   /* padding nhỏ hơn */
+  min-height: 28px;
+  max-height: 120px;
+  padding: 6px 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
-  resize: none;       /* không cho kéo */
+  resize: none;
   line-height: 1.3;
+  box-sizing: border-box;
 }
 
-
 .fcp-wcomment button {
-  padding: 8px 15px;
+  padding: 15px 15px;
   border: none;
   border-radius: 5px;
   background: #007bff;
@@ -71,12 +113,13 @@
   font-size: 14px;
   cursor: pointer;
   flex: 0 0 auto;
+  height: fit-content;
 }
-
 
 .fcp-wcomment button:hover {
   background: #0056b3;
 }
+
 #fcpContainer {
   position: fixed;
   top: 0;
@@ -89,17 +132,3 @@
   align-items: center;
   z-index: 9999;               /* nổi lên trên */
 }
-.fcp-left-side .container-post {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* container chiếm toàn bộ height của fcp-left-side */
-    overflow: hidden; /* để không tràn ra ngoài */
-}
-
-.fcp-left-side .article-content {
-    flex: 1;           /* phần content chiếm phần còn lại */
-    overflow-y: auto;  /* scroll nếu nội dung dài */
-}
-
-
-
