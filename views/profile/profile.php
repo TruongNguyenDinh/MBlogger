@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <?php include __DIR__ . '/../header/header.html'; ?>
+        <?php include __DIR__ . '/../header/header.php'; ?>
     </header>
     <main>
         <div class="pro-container">

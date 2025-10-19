@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <?php include("../header/header.html") ?>
+        <?php include("../header/header.php") ?>
     </header>
     <main>
         <div class="setting-container">

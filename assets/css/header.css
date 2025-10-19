@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    position: relative; /* quan trọng để header-result nằm theo input */
 }
 
 .search-header input {
@@ -61,4 +62,102 @@
     text-decoration: underline;    /* gạch chân */
     border-radius: 0;              /* không cần bo góc nữa */
 }
+
+/* Tìm kiếm */
+/* Container kết quả search */
+.header-result {
+    position: absolute;
+    top: 100%; /* ngay dưới input */
+    left: 0;
+    width: 100%; /* theo input */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 10;
+    display: none; /* bật khi có kết quả */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    padding: 8px 0;
+}
+
+/* Mỗi loại kết quả */
+.result-container_user,
+.result-container_article,
+.result-container_news {
+    padding: 5px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Xóa border dưới cùng */
+.result-container_user:last-child,
+.result-container_article:last-child,
+.result-container_news:last-child {
+    border-bottom: none;
+}
+
+/* Card title */
+.card-user .user-title,
+.card-article .article-title,
+.show-news-card .news-title {
+    font-weight: bold;
+    color: #007bff; /* màu tiêu đề, có thể đổi */
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+/* Elem container - xếp ngang */
+/* Container elem xếp theo hàng dọc (mỗi item 1 dòng) */
+.user-elem,
+.article-elem,
+.news-elem {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* khoảng cách giữa avatar và text */
+    padding: 5px 0; /* khoảng cách trên dưới */
+    border-bottom: 1px solid #eee; /* đường phân cách */
+}
+
+/* Xóa border dưới của phần tử cuối */
+.user-elem:last-child,
+.article-elem:last-child,
+.news-elem:last-child {
+    border-bottom: none;
+}
+
+/* Avatar user */
+.user-elem img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Tên user */
+.user-elem #user-name {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Article & News */
+.article-elem #title-article,
+.news-elem #title-news {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Hover effect */
+.user-elem:hover,
+.article-elem:hover,
+.news-elem:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
 

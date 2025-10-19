@@ -5,6 +5,9 @@
     </div>
     <div class="search-header">
         <input type="text" name="search-header" placeholder="Search: ID,name repo, topic">
+        <div class="header-result">
+            <?php include('../components/show-searching.php')?>
+        </div>
     </div>
     <div class="menu-header">
         <div class="home-menu active"><a href="../home/home.php">Home</a></div>
@@ -32,3 +35,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 </script>
+<script src="../../assets/js/header.js"></script>

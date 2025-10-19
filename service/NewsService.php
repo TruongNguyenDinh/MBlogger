@@ -44,5 +44,9 @@
             $result = $this->newsRepo->saveNews($title, $topic, $content, $thumbnail, $author_id);
             return $result;
         }
+
+        public function getNewsService($id){
+            return $this->newsRepo->getNewsById($id);
+        }
     }
 ?>

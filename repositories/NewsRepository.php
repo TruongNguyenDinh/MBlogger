@@ -28,7 +28,7 @@
 
                 return $news;
                 }
-                public function saveNews($title, $topic, $content, $thumbnail, $author_id) {
+        public function saveNews($title, $topic, $content, $thumbnail, $author_id):array {
             try {
                 $sql = "INSERT INTO news (title, topic, content, thumbnail, author_id)
                         VALUES (?, ?, ?, ?, ?)";
@@ -55,6 +55,24 @@
                     'success' => false,
                     'message' => 'Lỗi khi lưu tin tức: ' . $e->getMessage()
                 ];
+            }
+        }
+
+        public function getNewsById(int $id): ?array {
+            try {
+                $stmt = $this->conn->prepare("
+                    SELECT *
+                    FROM news
+                    WHERE id = :id
+                    LIMIT 1
+                ");
+                $stmt->execute([':id' => $id]);
+                $news = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                return $news ?: null; // nếu không có thì trả về null
+            } catch (PDOException $e) {
+                // Xử lý lỗi nếu cần
+                return null;
             }
         }
     }
