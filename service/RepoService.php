@@ -1,13 +1,16 @@
 <?php
 require_once __DIR__ . '/GithubService.php';
+require_once __DIR__.'/../repositories/RepoRepository.php';
 
 class RepoService {
     private $conn;
     private $githubService;
+    private $repoRepo;
 
     public function __construct($conn) {
         $this->conn = $conn;
         $this->githubService = new GithubService($conn);
+        $this->repoRepo = new RepoRepository($conn);
     }
 
     // Hàm lấy danh sách repo từ GitHub API
@@ -65,4 +68,33 @@ class RepoService {
 
         return json_decode($response, true);
     }
+    public function addRepo($userID, $repo_name, $branch, $repo_url) {
+        // Kiểm tra dữ liệu đầu vào
+        if (empty($userID) || empty($repo_name) || empty($branch) || empty($repo_url)) {
+            return [
+                "status" => "error",
+                "message" => "Thiếu dữ liệu cần thiết."
+            ];
+        }
+        // Gọi xuống Repository để thêm repo
+        $success = $this->repoRepo->insertNewRepo($userID, $repo_name, $branch, $repo_url);
+        if ($success) {
+            return [
+                "status" => "success",
+                "message" => "Thêm repo mới thành công.",
+                "repo" => [
+                    "user_id" => $userID,
+                    "repo_name" => $repo_name,
+                    "branch" => $branch,
+                    "repo_url" => $repo_url
+                ]
+            ];
+        } else {
+            return [
+                "status" => "error",
+                "message" => "Không thể thêm repo vào cơ sở dữ liệu."
+            ];
+        }
+    }
+
 }

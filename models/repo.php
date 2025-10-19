@@ -4,8 +4,6 @@ class Repo {
     private $user_id;
     private $repo_name;
     private $branch;
-    private $stars;
-    private $lastest_commit;
     private $repo_url;
 
     public function __construct(array $data = []) {
@@ -33,14 +31,6 @@ class Repo {
         return $this->branch;
     }
 
-    public function getStars() {
-        return $this->stars;
-    }
-
-    public function getLastestCommit() {
-        return $this->lastest_commit;
-    }
-
     public function getRepoUrl() {
         return $this->repo_url;
     }
@@ -61,15 +51,6 @@ class Repo {
     public function setBranch($branch) {
         $this->branch = $branch;
     }
-
-    public function setStars($stars) {
-        $this->stars = $stars;
-    }
-
-    public function setLastestCommit($lastest_commit) {
-        $this->lastest_commit = $lastest_commit;
-    }
-
     public function setRepoUrl($repo_url) {
         $this->repo_url = $repo_url;
     }

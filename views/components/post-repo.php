@@ -2,7 +2,7 @@
 
 <div class="pre-container">
     <!-- NOTE -->
-    <div class="pre-note-write">
+    <div class="pre-note-write" id="notes">
         <textarea placeholder="Write your notes here..."></textarea>
     </div>
 

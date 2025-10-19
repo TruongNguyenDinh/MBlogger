@@ -1,8 +1,10 @@
 <?php
+    session_start();
     require_once __DIR__.'/../repositories/ArticleRepository.php';
      require_once __DIR__.'/../repositories/UserRepository.php';
      require_once __DIR__.'/../repositories/RepoRepository.php';
     require_once __DIR__.'/../repositories/CommentRepository.php';
+    require_once __DIR__.'/../service/RepoService.php';
     class ArticleService{
         private $articleRepo;
         private $userRepo;
@@ -15,7 +17,7 @@
             $this->commentRepo = new CommentRepository($conn);
         }
 
-        public function indiviDualArti($id){
+        public function indiviDualArti($id):array{
             $articles = $this->articleRepo->findArticleByUserID($id);
             $result = [];
             foreach ($articles as $article) {
@@ -69,6 +71,33 @@
         }
         public function findArticleById($articleId){
             return $this->articleRepo->findArticleById($articleId);
+        }
+        public function addNewArticle(array $data) {
+            $user_id = $_SESSION['user']['id'];
+            // Validate dữ liệu đầu vào
+            if (empty($data['repoName'])) {
+                return ["status" => "error", "message" => "Thiếu tên repo."];
+            }
+            //Lấy id repo vừa thêm
+            $repo_id = $this->repoRepo->insertNewRepo($user_id,$data['repoName'],$data['branch'] ?? '',$data['repo_url'] ?? '');
+            // Chuẩn hóa dữ liệu
+            $readmePath = $data['readmePath'] ?? null;
+            $content = trim($data['content'] ?? '');
+
+            // ✅ Nếu content rỗng → gán bằng readmePath
+            if (empty($content)) {
+                $content = $readmePath;
+            }
+
+
+            $articleData = [
+            'user_id' => $user_id,
+            'repo_id' => $repo_id,
+            'title'       => trim($data['note'] ?? ''),
+            'content'    => $content
+            ];
+            // Gọi repo
+            return $this->articleRepo->insertArticle($articleData);
         }
     }
 ?>

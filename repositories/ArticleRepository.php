@@ -53,5 +53,35 @@
 
         return $articles;
     }
+    public function insertArticle($data) {
+        try {
+            $stmt = $this->conn->prepare("
+                INSERT INTO articles 
+                (user_id, repo_id, title, content)
+                VALUES (:user_id, :repo_id, :title, :content)
+            ");
+
+            $stmt->execute([
+                ':user_id'  => $data['user_id'],
+                ':repo_id'  => $data['repo_id'],
+                ':title'    => $data['title'],
+                ':content'  => $data['content']
+            ]);
+            // Lấy ID của bài viết vừa thêm
+            $articleId = $this->conn->lastInsertId();
+            return [
+                "status"  => "success",
+                "message" => "Đã thêm bài viết mới thành công.",
+                "repoName" => $data['repoName'] ?? null,
+                "article_id"  => $articleId
+            ];
+
+        } catch (PDOException $e) {
+            return [
+                "status" => "error",
+                "message" => "Lỗi CSDL: " . $e->getMessage()
+            ];
+        }
+    }
  }
 ?>

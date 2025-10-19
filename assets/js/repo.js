@@ -5,6 +5,9 @@ const folderTree = document.getElementById("repo-folder-tree");
 const dynamicPath = document.querySelector(".dynamic-path");
 const showContent = document.querySelector(".repo-show-content");
 
+let selectedRepoData = null; // dữ liệu tạm cho POST
+
+
 const username = "TruongNguyenDinh"; // GitHub username của bạn
 const branchBox = document.querySelector(".repo-folder-branch");
 
@@ -16,16 +19,13 @@ let GITHUB_TOKEN = "";
 
 fetch("../../api/get_github_info.php")
   .then(res => {
-    console.log("📥 Raw response:", res);
     return res.text(); // lấy text để xem có gì lạ (ví dụ lỗi warning PHP)
   })
   .then(txt => {
-    console.log("📄 Response text:", txt);
     try {
       const data = JSON.parse(txt);
       repoOwner = data.username;
       GITHUB_TOKEN = data.token;
-      console.log("✅ Parsed data:", data);
     } catch (err) {
       console.error("❌ JSON parse error:", err);
     }
@@ -55,7 +55,6 @@ function loadBranches(repo) {
     })
     .catch(err => {
         branchSelect.innerHTML = `<option>Lỗi khi tải nhánh</option>`;
-        console.error(err);
     });
 }
 
@@ -85,7 +84,7 @@ async function loadTree(branch) {
 
   const tree = data.tree;
 
-  // Tạo root object
+  // ✅ Xây cây thư mục
   const root = {};
   tree.forEach(item => {
     const parts = item.path.split("/");
@@ -104,14 +103,54 @@ async function loadTree(branch) {
   folderTree.innerHTML = "";
   folderTree.appendChild(renderTree(root, branch));
 
-  // Hiển thị README mặc định nếu có
+  // ✅ Kiểm tra README.md
   const readme = tree.find(f => f.path.toLowerCase() === "readme.md");
+
   if (readme) {
+    // 🟩 Gán link README vào selectedRepoData để JS post đi
+    selectedRepoData.readmeUrl = `https://github.com/${repoOwner}/${repoName}/blob/${branch}/${readme.path}`;
+    console.log("FOUND README:", selectedRepoData.readmeUrl);
+    // 🟩 Cập nhật nhánh trong cells (ô thứ 3 hoặc 4 tuỳ cấu trúc)
+  if (selectedRepoData.cells && selectedRepoData.cells.length >= 4) {
+    // cells[3] là nhánh theo như bạn log ở trên
+    selectedRepoData.cells[3] = branch;
+  }
+
+  // 🟩 Cập nhật lại readmePath cho đúng nhánh
+  selectedRepoData.readmePath = `https://github.com/${repoOwner}/${repoName}/blob/${branch}/README.md`;
+
+  // 🟩 In ra để kiểm tra
+  console.log("✅ Updated selectedRepoData:", selectedRepoData);
+
+    // 🟩 Gán luôn nhánh (để POST về backend nếu cần)
+    selectedRepoData.branch = branch;
+
+    // 🟩 Hiển thị README nội dung lên màn hình
     loadFile(branch, "README.md");
   } else {
+    selectedRepoData.readmeUrl = null;
+    console.warn("⚠ Không tìm thấy README.md");
     showContent.innerHTML = "No README.md found.";
   }
+  // ✅ Cập nhật giao diện hiển thị nhánh hiện tại
+  const branchContainer = document.querySelector(".repo-folder-default");
+  if (branchContainer) {
+    branchContainer.innerHTML = `
+      <div class="branch-select">
+        <span>🌿 Branch:</span>
+        <strong>${branch}</strong>
+      </div>
+    `;
+  }
+
+  // ✅ Cập nhật biến lưu nhánh hiện tại (nếu có)
+  selectedRepoData.branch = branch;
+
+  // ✅ In log kiểm tra
+  console.log("🔄 Đã chuyển sang nhánh:", branch);
+
 }
+
 
 // Render cây thư mục
 function renderTree(obj, branch, parentPath = "") {
@@ -215,6 +254,16 @@ const repoRows = document.querySelectorAll(".repo-table tbody tr");
 
 repoRows.forEach(row => {
   row.addEventListener("click", () => {
+    // Lưu toàn bộ data-attribute và cell text
+    selectedRepoData = {
+      repoID: row.dataset.repoid,
+      repoName: row.dataset.repo,
+      branch: row.dataset.branch || branchSelect.value,
+      cells: Array.from(row.querySelectorAll('td')).map(td => td.innerText)
+    };
+    //Debug
+    console.log("Selected row data:", selectedRepoData);
+    
     // Ẩn bảng repo 
     document.querySelector(".repo-show-repo").style.display = "none";
     document.querySelector(".repo-folder-default").style.display = "none";

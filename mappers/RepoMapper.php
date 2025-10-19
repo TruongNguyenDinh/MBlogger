@@ -8,8 +8,6 @@
             'user_id'=>$row['user_id'],
             'repo_name'=>$row['repo_name'],
             'branch'=>$row['branch'],
-            'stars'=>$row['stars'],
-            'lastest_commit'=>$row['lastest_commit'],
             'repo_url'=>$row['repo_url']
         ]);
     }

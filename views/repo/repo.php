@@ -64,6 +64,7 @@
         </div>
     </main>
     <script src="../../assets/js/repo.js"></script>
+    <script src="../../assets/js/sendArticle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
