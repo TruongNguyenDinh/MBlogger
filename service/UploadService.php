@@ -1,6 +1,8 @@
 <?php
 // login.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 class UploadService {
     public static function uploadImgNews($file) {
         $userId = $_SESSION['user']['id'];

@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +57,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include '../../controls/RepoController.php'; ?>
+                            <?php 
+                            include '../../controls/RepoController.php'; 
+                            ?>
                         </tbody>
                     </table>
                 </div>

@@ -8,7 +8,6 @@ const showContent = document.querySelector(".repo-show-content");
 let selectedRepoData = null; // dữ liệu tạm cho POST
 
 
-const username = "TruongNguyenDinh"; // GitHub username của bạn
 const branchBox = document.querySelector(".repo-folder-branch");
 
 // Lưu URL ban đầu để khi đóng popup có thể trả về
@@ -36,7 +35,7 @@ fetch("../../api/get_github_info.php")
 function loadBranches(repo) {
     branchSelect.innerHTML = `<option>Đang tải...</option>`;
 
-    fetch(`https://api.github.com/repos/${username}/${repo}/branches`, {
+    fetch(`https://api.github.com/repos/${repoOwner}/${repo}/branches`, {
       headers: {
         "User-Agent": "Mblogger-App",
         "Authorization": `token ${GITHUB_TOKEN}`
@@ -138,7 +137,7 @@ async function loadTree(branch) {
     branchContainer.innerHTML = `
       <div class="branch-select">
         <span>🌿 Branch:</span>
-        <strong>${branch}</strong>
+        <strong>None</strong>
       </div>
     `;
   }
@@ -341,6 +340,7 @@ backBtn.addEventListener("click", () => {
     // Ẩn dynamic path
     document.querySelector(".dynamic-path").textContent = "";
     backBtn.style.display = "none";
+    
 });
 
 //bật post
