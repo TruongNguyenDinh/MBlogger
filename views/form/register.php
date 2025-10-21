@@ -1,26 +1,27 @@
-<div class = "general-form">
-    <form action="../../controls/registercontroller.php" method="post">
+<div class="general-form">
+    <form id="register-form" action="../../controls/registercontroller.php" method="post">
         <div class="title">
-            <span id='title-login'>user registration</span>
+            <span id="title-login">User Registration</span>
         </div>
+
         <div class="input-group">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="username" placeholder="User name" >
+            <input type="text" name="username" placeholder="User name">
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-key"></i>
-            <input type="password" name="password" placeholder="Password" >
+            <input type="password" name="password" placeholder="Password">
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-key"></i>
-            <input type="password" name="password_confirm" placeholder="Password again" >
+            <input type="password" name="password_confirm" placeholder="Password again">
         </div>
 
         <div class="input-group">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" name="email" placeholder="Email"    >
+            <input type="email" name="email" placeholder="Email">
         </div>
 
         <div id="action-section">
@@ -29,3 +30,6 @@
         </div>
     </form>
 </div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>

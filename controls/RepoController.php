@@ -1,11 +1,10 @@
 <?php
-
+if (!$showLoginPopup) {
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../service/RepoService.php';
 
 $conn = Database::getConnection();
 $repoService = new RepoService($conn);
-
 $userId = $_SESSION['user']['id'];
 $repos = $repoService->getReposByUserId($userId);
 
@@ -29,4 +28,5 @@ foreach ($repos as $r) {
         <td>{$r->id}</td>
     </tr>
     ";
+}
 }

@@ -1,3 +1,6 @@
+<?php
+    require_once __DIR__ . "/../../config/auth.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
         <?php include __DIR__ . '/../header/header.php'; ?>
     </header>
     <main>
+        <?php include __DIR__ . '/../../notification/flex/notiflex.php'; ?>
         <div class="pro-container">
             <div class="pro-left-side">
                 <div class="pro-profile_user">

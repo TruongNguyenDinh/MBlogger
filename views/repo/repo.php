@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/../../config/auth.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,6 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php include('../header/header.php')?>
     </header>
     <main>
+        <?php include __DIR__ . '/../../notification/flex/notiflex.php'; ?>
        <div class="repo-container">
             <div class="repo-folder">
                 <div class="repo-folder-branch" style = "display:none;">

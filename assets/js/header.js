@@ -80,7 +80,7 @@ searchInput.addEventListener('input', () => {
                     const id = elem.dataset.id;
 
                     let url = '#';
-                    if (type === 'user') url = `/mblogger/views/user/detail.php?id=${id}`;
+                    if (type === 'user') url = `../profile/profile.php?query=${id}`;
                     else if (type === 'article') url = `/mblogger/views/home/home.php?query-articleID=${id}`;
                     else if (type === 'news') url = `/mblogger/views/news/news.php?query-newsID=${id}`;
 

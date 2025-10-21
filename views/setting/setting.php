@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . "/../../config/auth.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,8 @@
     <header>
         <?php include("../header/header.php") ?>
     </header>
-    <main>
+    <main>        
+        
         <div class="setting-container">
             <div class="setting-left-side">
                 <div class="setting-account" data-page="account">Account</div>
@@ -22,7 +26,6 @@
             <div class="setting-main-side">
                 <?php
                     $page = $_GET['page'] ?? null;
-
                     if ($page === null) {
                         header("Location: setting.php?page=account");
                         exit;

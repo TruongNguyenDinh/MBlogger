@@ -7,3 +7,13 @@ document.addEventListener("click", function(e) {
       : "Show more";
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("loginPopup");
+    const cancel = document.getElementById("loginCancel");
+
+    if (cancel && popup) {
+        cancel.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
+    }
+});

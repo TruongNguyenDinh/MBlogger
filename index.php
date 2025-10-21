@@ -1,6 +1,10 @@
 <?php
-require_once __DIR__ . '/controls/HomeController.php';
-$conn = Database::getConnection();
-$controller = new HomeController($conn);
-$controller->index();
-?>
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['user'])) {
+    // Nếu chưa đăng nhập thì chuyển đến trang login
+    header("Location: /mblogger/views/home/home.php");
+    exit;
+}

@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <link rel="stylesheet" href="../../assets/css/header.css">
 <div class="container-header">
     <div class="logo-header">
@@ -15,7 +20,12 @@
         <div class="profile-menu"><a href="../profile/profile.php">Profile</a></div>
         <div class="repo-menu"><a href="../repo/repo.php">Repo</a></div>
         <div class="setting-menu"><a href="../setting/setting.php">Setting</a></div>
-        <div class="so-menu"><a href="../../api/sign_out.php">Signout</a></div>
+        <?php if (isset($_SESSION['user'])): ?>
+            <div class="so-menu" id="so-menu"><a href="../../api/sign_out.php">Sign out</a></div>
+        <?php else :?>
+            <div class="so-menu" id="so-menu"><a href="../../views/form/form.php">Sign in</a></div>
+        <?php endif; ?>
+        
     </div>
 </div>
 <script>
