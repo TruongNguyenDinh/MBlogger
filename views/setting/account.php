@@ -1,8 +1,15 @@
 <link rel="stylesheet" href="../../assets/css/settingelem.css">
+
 <div class="account-container">
     <div class="top-side">
         <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
     </div>
+    <div class="avatar-container">
+        <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="user-avt" id="userAvatar">
+        <div class="change-avt" id="changeAvtBtn">Change Avatar</div>
+        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+    </div>
+
     <div class="basic-content">
         <form id="account-form" method="POST">
             <div class="row-content">
@@ -63,7 +70,6 @@
                 <button id="save-btn" type="submit">Save</button>
             </div>
         </form>
-        
      </div>
 
     
@@ -76,3 +82,4 @@
             </div>
     </div>    
 </div>
+

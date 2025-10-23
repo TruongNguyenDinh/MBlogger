@@ -123,6 +123,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+//thay đổi ảnh đại diện
+document.addEventListener("DOMContentLoaded", function() {
+    const changeAvtBtn = document.getElementById("changeAvtBtn");
+    const avatarInput = document.getElementById("avatarInput");
+    const userAvatar = document.getElementById("userAvatar");
+
+    // Khi bấm nút "Change Avatar" → mở cửa sổ chọn file
+    changeAvtBtn.addEventListener("click", () => {
+        avatarInput.click();
+    });
+
+    // Khi người dùng chọn ảnh → hiển thị ảnh xem trước
+    avatarInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                userAvatar.src = e.target.result; // Cập nhật ảnh xem trước
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
+
 
 
 

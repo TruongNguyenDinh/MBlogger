@@ -1,5 +1,12 @@
 <?php
 require_once __DIR__ . "/../../config/auth.php";
+
+// Xử lý page trước khi xuất HTML
+$page = $_GET['page'] ?? null;
+if ($page === null) {
+    header("Location: setting.php?page=account");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +22,7 @@ require_once __DIR__ . "/../../config/auth.php";
         <?php include("../header/header.php") ?>
     </header>
     <main>        
-        
+        <?php include __DIR__ . '/../../notification/flex/notiflex.php'?>
         <div class="setting-container">
             <div class="setting-left-side">
                 <div class="setting-account" data-page="account">Account</div>
@@ -24,19 +31,15 @@ require_once __DIR__ . "/../../config/auth.php";
             </div>
 
             <div class="setting-main-side">
-                <?php
-                    $page = $_GET['page'] ?? null;
-                    if ($page === null) {
-                        header("Location: setting.php?page=account");
-                        exit;
-                    }
-
-                    if ($page === 'account') {
-                        include("./account.php");
-                    } elseif ($page === 'colab') {
-                        include("./colab.php");
-                    } elseif ($page === 'link') {
-                        include("./link.php");
+                <?php 
+                    if (!$showLoginPopup) {
+                        if ($page === 'account') {
+                            include("./account.php");
+                        } elseif ($page === 'colab') {
+                            include("./colab.php");
+                        } elseif ($page === 'link') {
+                            include("./link.php");
+                        }
                     }
                 ?>
             </div>
@@ -50,7 +53,6 @@ require_once __DIR__ . "/../../config/auth.php";
             });
         });
 
-        // Đặt active theo page hiện tại
         let params = new URLSearchParams(window.location.search);
         let current = params.get("page") || "account";
         document.querySelector(`.setting-left-side [data-page="${current}"]`)

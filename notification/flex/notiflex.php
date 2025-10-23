@@ -11,28 +11,28 @@
             <div class="nf-cancel" id="loginCancel">Cancel</div>
         </div>
         <div class="nf-footer">
-            <a href="/mblogger/views/form/register.php">I haven't got an account</a>
+            <a href="/mblogger/views/form/form.php?page=register">I haven't got an account</a>
         </div>
     </div>
 </div>
 <?php endif; ?>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    const loginCancel = document.getElementById("loginCancel");
-    const loginPopup = document.getElementById("loginPopup");
+        const loginCancel = document.getElementById("loginCancel");
+        const loginPopup = document.getElementById("loginPopup");
 
-    if (loginCancel && loginPopup) {
-        loginCancel.addEventListener("click", () => {
-        loginPopup.style.display = "none"; // ẩn popup
+        if (loginCancel && loginPopup) {
+            loginCancel.addEventListener("click", () => {
+            loginPopup.style.display = "none"; // ẩn popup
 
-        // Nếu có lịch sử trang trước, quay lại
-        if (document.referrer && document.referrer !== window.location.href) {
-            window.location.href = document.referrer;
-        } else {
-            // Nếu không có lịch sử, điều hướng về Home
-            window.location.href = "/mblogger/views/home/home.php";
+            // Nếu có lịch sử trang trước, quay lại
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.location.href = document.referrer;
+            } else {
+                // Nếu không có lịch sử, điều hướng về Home
+                window.location.href = "/mblogger/views/home/home.php";
+            }
+            });
         }
-        });
-    }
     });
 </script>

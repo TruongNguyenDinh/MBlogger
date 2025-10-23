@@ -82,6 +82,9 @@ class UserService {
     public function changeStatus($id,$status){
         return $this->userRepo->changeStatus($id,$status);
     }
+    public function changeAvatar($id,$img_name){
+        
+    }
 
 }
 ?>
