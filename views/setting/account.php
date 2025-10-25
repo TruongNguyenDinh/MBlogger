@@ -5,10 +5,15 @@
         <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
     </div>
     <div class="avatar-container">
-        <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="user-avt" id="userAvatar">
-        <div class="change-avt" id="changeAvtBtn">Change Avatar</div>
-        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+        <div style="position: relative;">
+            <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="user-avt" id="userAvatar">
+            <div class="change-avt" id="changeAvtBtn">Change Avatar</div>
+            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+        </div>
+        <button id="saveAvtBtn">Save</button>
     </div>
+
+
 
     <div class="basic-content">
         <form id="account-form" method="POST">

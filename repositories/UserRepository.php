@@ -75,6 +75,14 @@ class UserRepository {
         ");
         return $stmt->execute([$status,$id]);
     }
+    public function changeAvater($id,$url_avt){
+        $stmt = $this->conn->prepare("
+            UPDATE users
+            SET url_avt = ?
+            WHERE id = ?
+        ");
+        return $stmt->execute([$url_avt,$id]);
+    }
 
 
 }

@@ -51,7 +51,7 @@ class UploadService {
         }
         // Di chuyển file upload vào thư mục đích
         if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-            return $folder . $fileName; // đường dẫn tương đối để lưu DB
+            return '../..'.$folder . $fileName; // đường dẫn tương đối để lưu DB
         } else {
             throw new Exception("Không thể upload file!");
         }

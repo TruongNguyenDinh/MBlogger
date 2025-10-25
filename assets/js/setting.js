@@ -128,24 +128,59 @@ document.addEventListener("DOMContentLoaded", function() {
     const changeAvtBtn = document.getElementById("changeAvtBtn");
     const avatarInput = document.getElementById("avatarInput");
     const userAvatar = document.getElementById("userAvatar");
+    const saveAvtBtn = document.getElementById("saveAvtBtn");
 
-    // Khi bấm nút "Change Avatar" → mở cửa sổ chọn file
+    let selectedFile = null;
+
+    // Khi bấm Change Avatar → chọn file
     changeAvtBtn.addEventListener("click", () => {
         avatarInput.click();
     });
 
-    // Khi người dùng chọn ảnh → hiển thị ảnh xem trước
+    // Khi chọn file → xem trước + bật nút Save
     avatarInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
         if (file) {
+            selectedFile = file;
+
             const reader = new FileReader();
             reader.onload = (e) => {
-                userAvatar.src = e.target.result; // Cập nhật ảnh xem trước
+                userAvatar.src = e.target.result;
+                saveAvtBtn.style.display = "inline-block"; // ⚡ hiện nút Save
             };
             reader.readAsDataURL(file);
         }
     });
+    console.log('SaveBtn:', document.getElementById("saveAvtBtn"));
+
+
+    // Khi nhấn Save → gửi tên file lên PHP
+    saveAvtBtn.addEventListener("click", () => {
+      if (!selectedFile) return;
+
+      const formData = new FormData();
+      formData.append("avatar", selectedFile);
+
+      fetch("../../api/setAvatar.php", {
+          method: "POST",
+          body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          if (data.success) {
+              alert("✅ Avatar updated successfully!");
+              saveAvtBtn.style.display = "none";
+          } else {
+              alert("❌ " + (data.message || "Upload failed"));
+          }
+      })
+      .catch(err => console.error(err));
+  });
+
 });
+
+
 
 
 
