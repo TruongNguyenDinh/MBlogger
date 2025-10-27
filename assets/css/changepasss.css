@@ -1,0 +1,132 @@
+/* Nền mờ phủ toàn màn hình */
+.cp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* Khung chính */
+.cp-container {
+  background: #fff;
+  width: 380px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  padding: 24px 28px;
+  position: relative;
+  animation: popupFade 0.3s ease;
+}
+
+/* Hiệu ứng mở */
+@keyframes popupFade {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Tiêu đề */
+.cp-title {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+/* Dòng nhập */
+.elem_row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.elem_row label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+
+.input-wrapper input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Nút hiển thị mật khẩu */
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1rem;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.toggle-pass:hover {
+  color: #000;
+}
+
+/* Nút gửi */
+.cp-button-send-data {
+  background: #4a90e2;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cp-button-send-data:hover {
+  background: #357ab8;
+}
+
+/* 🔹 Nút đóng (x) ở góc trên phải */
+.cp-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 22px;
+  color: #666;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+.cp-close:hover {
+  color: #000;
+}
+
+.cp-line-notice {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  min-height: 18px;
+  font-weight: 500;
+}
+
+.cp-line-notice.error {
+  color: #e53935; /* đỏ cho lỗi */
+}
+
+.cp-line-notice.success {
+  color: #43a047; /* xanh lá cho thành công */
+}
+

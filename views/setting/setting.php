@@ -59,5 +59,6 @@ if ($page === null) {
                 ?.classList.add("active");
     </script>
     <script src="../../assets/js/setting.js"></script>
+    <script src="../../assets/js/changepass.js"></script>
 </body>
 </html>

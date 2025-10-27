@@ -85,6 +85,8 @@ class UserService {
     public function changeAvatar($id,$path){
         return $this->userRepo->changeAvater($id,$path);
     }
-
+    public function updatePassword($id,$newPass){
+        return $this->userRepo->updatePassword($id,$newPass);
+    }
 }
 ?>

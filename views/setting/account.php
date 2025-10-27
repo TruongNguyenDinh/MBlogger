@@ -78,13 +78,14 @@
      </div>
 
     
-    <div class="adv-btn" id="adv-btn1">Advantage >></div>
-    <div class="adv-btn" id="adv-btn2" style="display: none;">Less <<</div>
+    <div class="adv-btn" id="adv-btn1" style="margin-top:10px">Advantage >></div>
+    <div class="adv-btn" id="adv-btn2" style="display: none;margin-top:10px">Less <<</div>
     <div class="adv-content" id="adv-content" style="display:none;">
-        <div class="row-content">
-            <div class="left-input" style="cursor: pointer;text-align: center;">
-               Change password
-            </div>
-    </div>    
+    <div class="row-content">
+        <div class="left-input" style="cursor: pointer;text-align: center;">
+            Change password
+        </div>
+    </div> 
+    <div><?php include('../components/change-pass.php') ?></div>   
 </div>
 

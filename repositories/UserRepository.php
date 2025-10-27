@@ -83,7 +83,9 @@ class UserRepository {
         ");
         return $stmt->execute([$url_avt,$id]);
     }
-
-
+    public function updatePassword($userId, $hashedPassword) {
+        $stmt = $this->conn->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
+        return $stmt->execute([$hashedPassword, $userId]);
+    }
 }
 ?>
