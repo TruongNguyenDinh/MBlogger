@@ -59,3 +59,67 @@ tabs.forEach(tab => {
     }
   });
 });
+// ==================== GỌI API ĐỂ LẤY SỐ REPO CỦA NGƯỜI DÙNG GITHUB ====================
+document.addEventListener('DOMContentLoaded', async () => {
+  const CACHE_KEY = 'github_overview_cache';
+  const CACHE_TTL = 60 * 60 * 1000; // 1 tiếng
+
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('query');
+    let apiUrl = 'http://localhost/mblogger/api/get_overview_githubuser.php';
+    if (query && query !== 'user_reference') {
+      apiUrl += `?user_id=${encodeURIComponent(query)}`;
+    }
+
+    // 🧠 Kiểm tra cache
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { timestamp, data, url } = JSON.parse(cached);
+
+      // Nếu cùng user & cache chưa hết hạn
+      if (url === apiUrl && Date.now() - timestamp < CACHE_TTL) {
+        console.log("🟢 Dùng dữ liệu cache GitHub");
+        updateUI(data);
+        return;
+      }
+    }
+
+    console.log("🔵 Gọi API GitHub...");
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Lưu cache nếu hợp lệ
+    if (data && !data.error) {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        url: apiUrl,
+        data
+      }));
+    }
+
+    updateUI(data);
+  } 
+  catch (error) {
+    console.error('Error fetching GitHub data:', error);
+    document.getElementById('repo-count').textContent = 'Error';
+    document.getElementById('star-count').textContent = 'Error';
+  }
+
+  function updateUI(data) {
+    if (!data.hasGithub) {
+      document.getElementById('repo-count').textContent = '—';
+      document.getElementById('star-count').textContent = '—';
+      console.log("User chưa liên kết GitHub hoặc không có tài khoản.");
+      return;
+    }
+
+    document.getElementById('repo-count').textContent = data.public_repos ?? 'N/A';
+    document.getElementById('star-count').textContent = data.stars ?? '—';
+  }
+});
+
+
+
+
+

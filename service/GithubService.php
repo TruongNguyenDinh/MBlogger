@@ -51,4 +51,74 @@ class GithubService {
         return $github;
     }
 
+    public function OverviewUser($path, $token = null) {
+        $ch = curl_init($path);
+
+        $headers = [
+            'User-Agent: MBlogger',
+            'Accept: application/vnd.github+json'
+        ];
+
+        if ($token) {
+            $headers[] = 'Authorization: token ' . $token;
+        }
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => $headers
+        ]);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $err = curl_error($ch);
+            curl_close($ch);
+            return ['error' => $err];
+        }
+
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($status !== 200) {
+            return ['error' => "GitHub API returned status $status"];
+        }
+
+        $data = json_decode($response, true);
+        return $data ?: ['error' => 'Invalid JSON response'];
+    }
+
+    public function countStars($username, $token = null) {
+        $url = "https://api.github.com/users/$username/repos?per_page=100";
+        $ch = curl_init($url);
+
+        $headers = [
+            'User-Agent: MBlogger',
+            'Accept: application/vnd.github+json'
+        ];
+
+        if ($token) {
+            $headers[] = 'Authorization: token ' . $token;
+        }
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => $headers
+        ]);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $repos = json_decode($response, true);
+        if (!is_array($repos)) return 0;
+
+        $totalStars = 0;
+        foreach ($repos as $repo) {
+            $totalStars += $repo['stargazers_count'] ?? 0;
+        }
+        return $totalStars;
+    }
+
+
+
+
 }

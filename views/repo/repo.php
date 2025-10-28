@@ -42,7 +42,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="dynamic-path"></div>
                     <div class="header-btns">
                         <div class="back-btn" style="display:none;">⬅ Back</div>
-                        <div class="openGithub-btn">Open in Github</div>
+                        <div class="openGithub-btn"><a href="#">Open in Github</a></div>
                     </div>
                 </div>
                 <div class="repo-show-content" style="display:none;"></div>

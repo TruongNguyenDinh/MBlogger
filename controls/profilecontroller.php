@@ -27,7 +27,6 @@ if (!$showLoginPopup) {
         $user = $service->getUserById($userId);
         $articles = $artiService->indiviDualArti($userId);
         $gitIf = $githubService->getGithubInfoByUserId($userId);
-
     } catch (Exception $e) {
         die("Lỗi: " . $e->getMessage());
     }

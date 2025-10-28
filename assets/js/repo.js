@@ -15,7 +15,7 @@ let originalUrl = window.location.origin + window.location.pathname; // luôn l�
 
 let repoOwner = "";
 let GITHUB_TOKEN = "";
-
+let linkgithub = "";
 fetch("../../api/get_github_info.php")
   .then(res => {
     return res.text(); // lấy text để xem có gì lạ (ví dụ lỗi warning PHP)
@@ -25,6 +25,15 @@ fetch("../../api/get_github_info.php")
       const data = JSON.parse(txt);
       repoOwner = data.username;
       GITHUB_TOKEN = data.token;
+      linkgithub = data.link_github;
+      
+      // ✅ Gán vào thẻ <a> trong nút
+      const githubLink = document.querySelector(".openGithub-btn a");
+      if (githubLink && linkgithub) {
+        githubLink.href = linkgithub;
+        githubLink.target = "_blank"; // (tùy chọn) mở trong tab mới
+      }
+
     } catch (err) {
       console.error("❌ JSON parse error:", err);
     }
@@ -128,7 +137,6 @@ async function loadTree(branch) {
     loadFile(branch, "README.md");
   } else {
     selectedRepoData.readmeUrl = null;
-    console.warn("⚠ Không tìm thấy README.md");
     showContent.innerHTML = "No README.md found.";
   }
   // ✅ Cập nhật giao diện hiển thị nhánh hiện tại

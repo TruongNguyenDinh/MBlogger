@@ -32,11 +32,13 @@ try {
         echo json_encode([
             'username' => $github->getGithubUsername(),
             'token' => $github->getAccessToken(),
+            'link_github' => $github->getLink(),
         ]);
     } else {
         echo json_encode([
             'username' => null,
             'token' => null,
+            'link_github' =>null
         ]);
     }
 } catch (Exception $e) {
@@ -44,5 +46,6 @@ try {
         'error' => $e->getMessage(),
         'username' => null,
         'token' => null,
+        'link_github' =>null,
     ]);
 }

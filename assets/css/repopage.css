@@ -122,6 +122,12 @@ html, body {
   font-size: 13px;
   transition: background 0.2s;
 }
+/* ✅ Xóa style mặc định của thẻ a bên trong */
+.openGithub-btn a {
+  color: inherit;          /* lấy màu chữ của phần tử cha */
+  text-decoration: none;   /* bỏ gạch chân */
+  display: block;          /* để click được cả vùng */
+}
 .back-btn:hover, .openGithub-btn:hover {
     background: #e0e0e0;
 }

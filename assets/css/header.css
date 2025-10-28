@@ -3,14 +3,14 @@
     align-items: flex-start;
     justify-content: space-between; /* chia logo - search - menu */
     padding: 0 0 0 20px; /* bỏ padding-top */
-    /* background-color: #f5f5f5; màu nền tùy chọn */
 }
 
 .logo-header {
-    background-color: #fff;
+    /* background: linear-gradient(to right, #4facfe, #00f2fe); */
     font-size: 24px;
     font-weight: bold;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc;    /* viền 1px, màu xám nhạt */
+    border-radius: 5px;        /* bo góc 4px */
     display: inline-block;  /* border ôm chữ */
     padding: 2px 6px;       /* khoảng thở trong border */
     margin-top: 10px;       /* cả khối cách top 10px */
@@ -32,6 +32,11 @@
     border-radius: 4px;
     color: black; /* chữ trong search màu đen */
 }
+.search-header input:focus {
+    border-color: #4facfe;   /* viền xanh nhạt khi bấm */
+    color: #333;              /* đổi màu chữ */
+    outline: none;            /* bỏ viền xanh mặc định của trình duyệt */
+}
 
 .menu-header {
     top: 0px;
@@ -40,6 +45,7 @@
     border-radius: 0 0 0 50px;
     display: flex;
     gap: 15px;
+    /* background: linear-gradient(to right, #4facfe, #00f2fe);  */
 }
 .menu-header a{
     text-decoration: none;

@@ -61,7 +61,7 @@ class GithubRepository{
 
     public function findGithubByUserId(int $userId): ?Github {
         $stmt = $this->conn->prepare("
-            SELECT id, github_username, access_token, linked_at
+            SELECT id, github_username, access_token, linked_at, link_github
             FROM github_accounts
             WHERE user_id = :user_id
             LIMIT 1
@@ -80,7 +80,7 @@ class GithubRepository{
         $github->setGithubUsername($row['github_username']);
         $github->setAccessToken($row['access_token']);
         $github->setLinkedAt($row['linked_at']);
-
+        $github->setLink($row['link_github']);
         return $github;
     }
 

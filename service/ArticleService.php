@@ -43,7 +43,7 @@
                         "acomment"=>$commentCount
                     ];
                 }
-            return $result;
+            return array_reverse($result);
         }
         public function worldArti(): array {
             // Lấy 10 bài đăng mới nhất
