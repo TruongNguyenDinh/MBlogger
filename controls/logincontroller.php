@@ -19,9 +19,10 @@ if ($result['success']) {
         'id' => $result['user']->getId(),
         'fullname' => $result['user']->getName(),
         'role' => $result['user']->getRole(),
-        'email' => $result['user']->getEmail()
+        'email' => $result['user']->getEmail(),
+        'url_avt'=>$result['user']->getUrl(),
+        
     ];
-
     // Nếu có lưu trang muốn quay lại
     $redirectUrl = $_SESSION['redirect_after_login'] ?? '/mblogger/views/home/home.php';
     unset($_SESSION['redirect_after_login']);

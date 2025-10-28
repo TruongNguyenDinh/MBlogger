@@ -73,7 +73,7 @@ searchInput.addEventListener('input', () => {
                 headerResult.innerHTML = '<div class="result-container">No results</div>';
             }
 
-            // 👉 Thêm sự kiện click cho tất cả phần tử kết quả
+            // Thêm sự kiện click cho tất cả phần tử kết quả
             document.querySelectorAll('.user-elem, .article-elem, .news-elem').forEach(elem => {
                 elem.addEventListener('click', () => {
                     const type = elem.dataset.type;

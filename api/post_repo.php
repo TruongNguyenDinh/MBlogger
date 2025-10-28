@@ -16,7 +16,7 @@ try {
     if (!$data) {
         echo json_encode([
             "status" => "error",
-            "message" => "Không nhận được dữ liệu hợp lệ."
+            "message" => "No valid data received."
         ], JSON_UNESCAPED_UNICODE);
         exit;
     }
@@ -37,6 +37,6 @@ try {
 } catch (Exception $e) {
     echo json_encode([
         "status" => "error",
-        "message" => "Lỗi hệ thống: " . $e->getMessage()
+        "message" => "System error: " . $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
 }

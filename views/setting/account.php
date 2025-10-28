@@ -12,9 +12,6 @@
         </div>
         <button id="saveAvtBtn">Save</button>
     </div>
-
-
-
     <div class="basic-content">
         <form id="account-form" method="POST">
             <div class="row-content">

@@ -18,7 +18,7 @@ let GITHUB_TOKEN = "";
 let linkgithub = "";
 fetch("../../api/get_github_info.php")
   .then(res => {
-    return res.text(); // lấy text để xem có gì lạ (ví dụ lỗi warning PHP)
+    return res.text(); // Debug
   })
   .then(txt => {
     try {
@@ -27,7 +27,7 @@ fetch("../../api/get_github_info.php")
       GITHUB_TOKEN = data.token;
       linkgithub = data.link_github;
       
-      // ✅ Gán vào thẻ <a> trong nút
+      //  Gán vào thẻ <a> trong nút
       const githubLink = document.querySelector(".openGithub-btn a");
       if (githubLink && linkgithub) {
         githubLink.href = linkgithub;
@@ -42,7 +42,7 @@ fetch("../../api/get_github_info.php")
 
 
 function loadBranches(repo) {
-    branchSelect.innerHTML = `<option>Đang tải...</option>`;
+    branchSelect.innerHTML = `<option>Loading...</option>`;
 
     fetch(`https://api.github.com/repos/${repoOwner}/${repo}/branches`, {
       headers: {
@@ -62,7 +62,7 @@ function loadBranches(repo) {
         });
     })
     .catch(err => {
-        branchSelect.innerHTML = `<option>Lỗi khi tải nhánh</option>`;
+        branchSelect.innerHTML = `<option>Error loading branch</option>`;
     });
 }
 
@@ -86,13 +86,13 @@ async function loadTree(branch) {
   const data = await res.json();
 
   if (!data.tree) {
-    showContent.textContent = "Không tải được cây thư mục.";
+    showContent.textContent = "Failed to load directory tree.";
     return;
   }
 
   const tree = data.tree;
 
-  // ✅ Xây cây thư mục
+  //  Xây cây thư mục
   const root = {};
   tree.forEach(item => {
     const parts = item.path.split("/");
@@ -111,29 +111,26 @@ async function loadTree(branch) {
   folderTree.innerHTML = "";
   folderTree.appendChild(renderTree(root, branch));
 
-  // ✅ Kiểm tra README.md
+  // Kiểm tra README.md
   const readme = tree.find(f => f.path.toLowerCase() === "readme.md");
 
   if (readme) {
-    // 🟩 Gán link README vào selectedRepoData để JS post đi
+    //  Gán link README vào selectedRepoData để JS post đi
     selectedRepoData.readmeUrl = `https://github.com/${repoOwner}/${repoName}/blob/${branch}/${readme.path}`;
     console.log("FOUND README:", selectedRepoData.readmeUrl);
-    // 🟩 Cập nhật nhánh trong cells (ô thứ 3 hoặc 4 tuỳ cấu trúc)
+    //  Cập nhật nhánh trong cells (ô thứ 3 hoặc 4 tuỳ cấu trúc)
   if (selectedRepoData.cells && selectedRepoData.cells.length >= 4) {
     // cells[3] là nhánh theo như bạn log ở trên
     selectedRepoData.cells[3] = branch;
   }
 
-  // 🟩 Cập nhật lại readmePath cho đúng nhánh
+  //  Cập nhật lại readmePath cho đúng nhánh
   selectedRepoData.readmePath = `https://github.com/${repoOwner}/${repoName}/blob/${branch}/README.md`;
 
-  // 🟩 In ra để kiểm tra
-  console.log("✅ Updated selectedRepoData:", selectedRepoData);
-
-    // 🟩 Gán luôn nhánh (để POST về backend nếu cần)
+    //  Gán nhánh (để POST về backend nếu cần)
     selectedRepoData.branch = branch;
 
-    // 🟩 Hiển thị README nội dung lên màn hình
+    // Hiển thị README nội dung lên màn hình
     loadFile(branch, "README.md");
   } else {
     selectedRepoData.readmeUrl = null;
@@ -150,11 +147,8 @@ async function loadTree(branch) {
     `;
   }
 
-  // ✅ Cập nhật biến lưu nhánh hiện tại (nếu có)
+  // Cập nhật biến lưu nhánh hiện tại (nếu có)
   selectedRepoData.branch = branch;
-
-  // ✅ In log kiểm tra
-  console.log("🔄 Đã chuyển sang nhánh:", branch);
 
 }
 
@@ -268,8 +262,6 @@ repoRows.forEach(row => {
       branch: row.dataset.branch || branchSelect.value,
       cells: Array.from(row.querySelectorAll('td')).map(td => td.innerText)
     };
-    //Debug
-    console.log("Selected row data:", selectedRepoData);
     
     // Ẩn bảng repo 
     document.querySelector(".repo-show-repo").style.display = "none";
@@ -282,18 +274,18 @@ repoRows.forEach(row => {
     document.querySelector(".repo-folder-branch").style.display = "block";
     document.querySelector(".repo-folder-tree_none").style.display = "none";
 
-    // 👉 Lấy tên repo và nhánh từ data của dòng đó
+    // Lấy tên repo và nhánh từ data của dòng đó
     repoName = row.dataset.repo;
     const branch = row.dataset.branch || branchSelect.value;
 
-    // 👉 Gọi lại loadTree() cho repo vừa chọn
+    // Gọi lại loadTree() cho repo vừa chọn
     loadTree(branch);
-    // 👉 Tải danh sách nhánh
+    // Tải danh sách nhánh
     loadBranches(repoName);
 
     // Cập nhật dynamic path
     dynamicPath.textContent = `${repoOwner} >> ${repoName}`;
-    // 👉 Cập nhật query repoID trên URL mà không reload trang
+    // Cập nhật query repoID trên URL mà không reload trang
     const repoId = row.dataset.repoid;
     const newUrl = new URL(window.location);
     newUrl.searchParams.set("repoID", repoId);

@@ -78,7 +78,7 @@
             $user_id = $_SESSION['user']['id'];
             // Validate dữ liệu đầu vào
             if (empty($data['repoName'])) {
-                return ["status" => "error", "message" => "Thiếu tên repo."];
+                return ["status" => "error", "message" => "Missing repo name."];
             }
             //Lấy id repo vừa thêm
             $repo_id = $this->repoRepo->insertNewRepo($user_id,$data['repoName'],$data['branch'] ?? '',$data['repo_url'] ?? '');

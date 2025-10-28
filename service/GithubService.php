@@ -16,7 +16,7 @@ class GithubService {
         if (empty($github->getUserId()) || empty($github->getGithubUsername()) || empty($github->getAccessToken())) {
             return [
                 'success' => false,
-                'message' => 'Thiếu thông tin bắt buộc (user_id, username hoặc token).'
+                'message' => 'Missing required information (user_id, username or token).'
             ];
         }
         // ✅ Gọi repo để lưu thông tin
@@ -24,12 +24,12 @@ class GithubService {
         if ($saved) {
             return [
                 'success' => true,
-                'message' => 'Lưu thông tin GitHub thành công.'
+                'message' => 'GitHub information saved successfully.'
             ];
         } else {
             return [
                 'success' => false,
-                'message' => 'Không thể lưu thông tin GitHub vào cơ sở dữ liệu.'
+                'message' => 'Unable to save GitHub information to database.'
             ];
         }
     }

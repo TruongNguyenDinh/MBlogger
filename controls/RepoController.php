@@ -9,7 +9,7 @@ $userId = $_SESSION['user']['id'];
 $repos = $repoService->getReposByUserId($userId);
 
 if (!$repos) {
-    echo "<tr><td colspan='6'>Không tải được dữ liệu</td></tr>";
+    echo "<tr><td colspan='6'>Unable to load data</td></tr>";
     exit;
 }
 

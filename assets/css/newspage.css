@@ -34,18 +34,18 @@ main {
 }
 /* Tab "who-post" */
 #who-post {
-  display: inline-block; /* ✅ để tab chỉ rộng theo nội dung */
+  display: inline-block; /*  để tab chỉ rộng theo nội dung */
   padding: 8px 16px;
   background: #f1f1f1;
   border: 1px solid #ccc;
-  border-bottom: none; /* ✅ nối liền với nội dung bên dưới */
+  border-bottom: none; /*  nối liền với nội dung bên dưới */
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   font-weight: bold;
   cursor: default;
   position: relative;
   top: 1px; /* căn chỉnh viền ăn khớp */
-  left: 0;  /* ✅ nằm góc trái */
+  left: 0;  /*  nằm góc trái */
 }
 
 /* Khung nội dung chính */

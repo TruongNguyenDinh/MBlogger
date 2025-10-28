@@ -54,7 +54,8 @@ class SettingController {
                     'phone' => $updatedUser->getPhone(),
                     'work' => $updatedUser->getWork(),
                     'address' => $updatedUser->getAddress(),
-                    'birthday' => $updatedUser->getBirthday()
+                    'birthday' => $updatedUser->getBirthday(),
+                    'url_avt'=>$updatedUser->getUrl(),
                 ];
             }
         }

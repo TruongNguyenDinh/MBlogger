@@ -36,8 +36,8 @@
 }
 
 .cnn-date {
-  margin-left: auto;       /* đẩy sang phải */
-  font-size: 12px;         /* nhỏ hơn tên */
-  color: #888;             /* màu xám nhẹ */
+  margin-left: auto;     
+  font-size: 12px;         
+  color: #888;            
   font-weight: 400;
 }

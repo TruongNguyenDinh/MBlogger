@@ -1,4 +1,7 @@
 <?php
+/*
+
+*/
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -12,20 +15,16 @@ try {
     $conn = Database::getConnection();
     $service = new GithubService($conn);
 
-    // Lấy query trên URL (nếu có)
+    // Get query on url (if any)
     $query = $_GET['query'] ?? 'user_reference';
-
-    // Xác định userId cần lấy
-    if ($query === 'user_reference') {
-        if (!isset($_SESSION['user']['id'])) {
-            throw new Exception("Chưa đăng nhập");
-        }
+    // Identify the user to retrieve
+    if ($query === 'user_reference') { // This is owner
         $userId = $_SESSION['user']['id'];
     } else {
-        $userId = intval($query); // query là id của người khác
+        $userId = intval($query); // query for other id
     }
 
-    // Lấy thông tin GitHub
+    // Get GitHub infomation from userID
     $github = $service->getGithubInfoByUserId($userId);
 
     if ($github) {

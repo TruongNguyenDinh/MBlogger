@@ -1,5 +1,5 @@
 .fcp-container {
-  position: fixed;           /* thẻ nổi */
+  position: fixed;        
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -23,8 +23,8 @@
     flex-direction: column;
     height: 100%;
     box-sizing: border-box;
-    overflow-y: auto; /* chỉ cuộn dọc */
-    overflow-x: hidden; /* tránh tràn ngang */
+    overflow-y: auto; 
+    overflow-x: hidden; 
 }
 .fcp-left-side .container-post {
     display: flex;

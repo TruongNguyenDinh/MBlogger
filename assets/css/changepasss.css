@@ -9,7 +9,7 @@
   z-index: 2000;
 }
 
-/* Khung chính */
+/* =================== Main layout =================== */
 .cp-container {
   background: #fff;
   width: 380px;
@@ -26,7 +26,7 @@
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Tiêu đề */
+/* =================== Title ===================*/
 .cp-title {
   text-align: center;
   font-size: 1.3rem;
@@ -34,7 +34,7 @@
   color: #333;
 }
 
-/* Dòng nhập */
+/* =================== Enter content =================== */
 .elem_row {
   display: flex;
   flex-direction: column;
@@ -67,7 +67,8 @@
   outline: none;
 }
 
-/* Nút hiển thị mật khẩu */
+/* =================== Button =================== */
+/* Show passowrd button */
 .toggle-pass {
   position: absolute;
   right: 10px;
@@ -82,7 +83,7 @@
   color: #000;
 }
 
-/* Nút gửi */
+/* Send button */
 .cp-button-send-data {
   background: #4a90e2;
   color: #fff;
@@ -99,7 +100,7 @@
   background: #357ab8;
 }
 
-/* 🔹 Nút đóng (x) ở góc trên phải */
+/* Close tab button */
 .cp-close {
   position: absolute;
   top: 10px;
@@ -123,10 +124,10 @@
 }
 
 .cp-line-notice.error {
-  color: #e53935; /* đỏ cho lỗi */
+  color: #e53935;
 }
 
 .cp-line-notice.success {
-  color: #43a047; /* xanh lá cho thành công */
+  color: #43a047;
 }
 

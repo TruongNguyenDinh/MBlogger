@@ -7,7 +7,7 @@ $userService = new UserService($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['avatar'])) {
     $file = $_FILES['avatar'];
     $path = UploadService::uploadImgAvt($file);
-    $userId = $_SESSION['user']['id']; // hoặc từ session
+    $userId = $_SESSION['user']['id'];
     $userService->changeAvatar($userId, $path); 
     echo json_encode(['success' => true, 'path' => $path]);
     }

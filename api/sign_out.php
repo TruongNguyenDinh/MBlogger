@@ -23,7 +23,7 @@ if (ini_get("session.use_cookies")) {
 // Huỷ session
 session_destroy();
 
-// Chuyển hướng về trang đăng nhập hoặc home
-header("Location: ../views/form/form.php"); // sửa đường dẫn theo project của bạn
+// Chuyển hướng về trang home
+header("Location: ../views/form/form.php");
 exit;
 ?>

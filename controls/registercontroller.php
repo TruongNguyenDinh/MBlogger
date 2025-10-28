@@ -14,13 +14,13 @@ $email      = trim($_POST['email'] ?? '');
 if ($username === '' || $password === '' || $cpassword === '' || $email === '') {
     echo json_encode([
         'success' => false,
-        'message' => 'Vui lòng điền đầy đủ thông tin trước khi đăng ký.'
+        'message' => 'Please fill in all information before registering.'
     ]);
     exit;
 }
 
 if ($password !== $cpassword) {
-    echo json_encode(['success' => false, 'message' => 'Mật khẩu xác nhận không khớp.']);
+    echo json_encode(['success' => false, 'message' => 'Confirmation password does not match.']);
     exit;
 }
 

@@ -27,16 +27,16 @@
         public function addCommentService($user_comment_id, $article_id, $content) {
             // Kiểm tra dữ liệu đầu vào
             if (empty($content)) {
-                return ['success' => false, 'message' => 'Comment không được để trống'];
+                return ['success' => false, 'message' => 'Comment cannot be blank'];
             }
 
             // Gọi repository để thêm comment
             $result = $this->commentRepo->addComment($article_id, $user_comment_id, $content);
 
             if ($result) {
-                return ['success' => true, 'message' => 'Comment đã được thêm'];
+                return ['success' => true, 'message' => 'Comment has been added'];
             } else {
-                return ['success' => false, 'message' => 'Thêm comment thất bại'];
+                return ['success' => false, 'message' => 'Add comment failed'];
             }
         }
 

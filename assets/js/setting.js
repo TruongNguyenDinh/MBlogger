@@ -16,7 +16,7 @@ const editBtn = document.getElementById("edit-btn");
 const saveBtn = document.getElementById("save-btn");
 const inputs = document.querySelectorAll(".basic-content input, .basic-content select");
 
-// 🔒 Khóa tất cả ô khi load trang
+// Khóa tất cả ô khi load trang
 window.addEventListener("DOMContentLoaded", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   saveBtn.disabled = true;
 });
 
-// ✏️ Khi nhấn "Edit" → mở khóa
+// Khi nhấn "Edit" → mở khóa
 editBtn.addEventListener("click", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -44,7 +44,7 @@ editBtn.addEventListener("click", () => {
   saveBtn.disabled = false;
 });
 
-// 💾 Khi nhấn "Save" → khóa lại
+// Khi nhấn "Save" → khóa lại
 saveBtn.addEventListener("click", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -65,14 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 
-  // ✅ Khi click vào input → hiện dropdown
+  // Khi click vào input → hiện dropdown
   input.addEventListener("click", (e) => {
     e.stopPropagation(); // tránh bị đóng ngay
     optionsBox.style.display =
       optionsBox.style.display === "block" ? "none" : "block";
   });
 
-  // ✅ Khi chọn một option → ghi vào input
+  // Khi chọn một option → ghi vào input
   optionsBox.querySelectorAll("div").forEach(opt => {
     opt.addEventListener("click", () => {
       input.value = opt.dataset.value;
@@ -80,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Ẩn dropdown khi click ra ngoài
+  //  Ẩn dropdown khi click ra ngoài
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".role-select")) {
       optionsBox.style.display = "none";
     }
   });
 
-  // ✅ Khi nhấn Save → AJAX lưu
+  // Khi nhấn Save → AJAX lưu
   saveBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((err) => {
         console.error("❌ Fetch error:", err);
-        alert("Có lỗi xảy ra khi gửi dữ liệu!");
+        alert("An error occurred while sending data!");
       });
   });
 });

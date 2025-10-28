@@ -108,14 +108,12 @@ if (backBtnRe) {
 
     if (textarea.value.trim() !== "") {
       const confirmExit = confirm(
-        "Bạn có chắc muốn thoát không? Mọi thay đổi sẽ không được lưu."
+        "Are you sure you want to exit? Any changes will not be saved."
       );
       if (confirmExit) recruit_news();
-      else console.log("Người dùng chọn ở lại");
     } else {
       recruit_news();
     }
-
     const url = new URL(window.location);
     url.searchParams.delete("query-recruitment");
     window.location.href = url.toString();

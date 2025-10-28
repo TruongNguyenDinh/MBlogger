@@ -21,7 +21,6 @@ class Settingcolabcontroller {
         // Kiểm tra đăng nhập
         $id = $_SESSION['user']['id'];
         $userInfo = $this->userService->getUserById($id);
-        
     }
 }
 

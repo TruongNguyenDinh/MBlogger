@@ -8,7 +8,7 @@ require_once __DIR__ . '/../service/GithubService.php';
 $conn = Database::getConnection();
 $githubService = new GithubService($conn);
 
-// ✅ Lấy userId từ query hoặc session
+// Lấy userId từ query hoặc session
 $userId = $_GET['user_id'] ?? ($_SESSION['user']['id'] ?? null);
 if (!$userId) {
     http_response_code(400);
@@ -16,7 +16,7 @@ if (!$userId) {
     exit;
 }
 
-// ✅ Lấy thông tin GitHub của người dùng trong DB
+// Lấy thông tin GitHub của người dùng trong DB
 $github = $githubService->getGithubInfoByUserId($userId);
 if (!$github) {
     echo json_encode([
@@ -38,7 +38,7 @@ if (!$githubUsername) {
 }
 $githubToken = $github->getAccessToken();
 
-// ✅ Nếu có GitHub username hợp lệ thì mới gọi API
+// Nếu có GitHub username hợp lệ thì mới gọi API
 $path = "https://api.github.com/users/" . $githubUsername;
 $result = $githubService->OverviewUser($path,$githubToken );
 $result['stars'] = $githubService->countStars($githubUsername,$githubToken );
