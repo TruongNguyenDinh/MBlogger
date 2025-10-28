@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../config/db.php';
@@ -13,7 +16,7 @@ try {
     if (!$data) {
         echo json_encode([
             "status" => "error",
-            "message" => "Không nhận được dữ liệu hợp lệ."
+            "message" => "No valid data received."
         ], JSON_UNESCAPED_UNICODE);
         exit;
     }
@@ -34,6 +37,6 @@ try {
 } catch (Exception $e) {
     echo json_encode([
         "status" => "error",
-        "message" => "Lỗi hệ thống: " . $e->getMessage()
+        "message" => "System error: " . $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
 }

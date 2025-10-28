@@ -73,7 +73,7 @@ class RepoService {
         if (empty($userID) || empty($repo_name) || empty($branch) || empty($repo_url)) {
             return [
                 "status" => "error",
-                "message" => "Thiếu dữ liệu cần thiết."
+                "message" => "Missing required data."
             ];
         }
         // Gọi xuống Repository để thêm repo
@@ -81,7 +81,7 @@ class RepoService {
         if ($success) {
             return [
                 "status" => "success",
-                "message" => "Thêm repo mới thành công.",
+                "message" => "New repo added successfully.",
                 "repo" => [
                     "user_id" => $userID,
                     "repo_name" => $repo_name,
@@ -92,7 +92,7 @@ class RepoService {
         } else {
             return [
                 "status" => "error",
-                "message" => "Không thể thêm repo vào cơ sở dữ liệu."
+                "message" => "Unable to add repo to database."
             ];
         }
     }

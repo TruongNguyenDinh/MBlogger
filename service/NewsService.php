@@ -32,7 +32,7 @@
             if (empty(trim($title)) || empty(trim($content))) {
                 return [
                     'success' => false,
-                    'message' => 'Tiêu đề và nội dung không được để trống.'
+                    'message' => 'Title and content cannot be blank.'
                 ];
             }
 

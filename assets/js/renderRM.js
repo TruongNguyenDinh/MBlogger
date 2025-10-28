@@ -1,4 +1,4 @@
-// Render readme + đang mất comment
+// Render readme
 document.addEventListener("DOMContentLoaded", () => {
   const articles = document.querySelectorAll(".article-content");
 

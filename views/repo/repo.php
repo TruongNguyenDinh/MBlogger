@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . "/../../config/auth.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +18,7 @@
         <?php include('../header/header.php')?>
     </header>
     <main>
+        <?php include __DIR__ . '/../../notification/flex/notiflex.php'; ?>
        <div class="repo-container">
             <div class="repo-folder">
                 <div class="repo-folder-branch" style = "display:none;">
@@ -35,7 +42,7 @@
                     <div class="dynamic-path"></div>
                     <div class="header-btns">
                         <div class="back-btn" style="display:none;">⬅ Back</div>
-                        <div class="openGithub-btn">Open in Github</div>
+                        <div class="openGithub-btn"><a href="#">Open in Github</a></div>
                     </div>
                 </div>
                 <div class="repo-show-content" style="display:none;"></div>
@@ -52,7 +59,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php include '../../controls/RepoController.php'; ?>
+                            <?php 
+                            include '../../controls/RepoController.php'; 
+                            ?>
                         </tbody>
                     </table>
                 </div>

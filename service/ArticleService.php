@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     require_once __DIR__.'/../repositories/ArticleRepository.php';
      require_once __DIR__.'/../repositories/UserRepository.php';
      require_once __DIR__.'/../repositories/RepoRepository.php';
@@ -41,7 +43,7 @@
                         "acomment"=>$commentCount
                     ];
                 }
-            return $result;
+            return array_reverse($result);
         }
         public function worldArti(): array {
             // Lấy 10 bài đăng mới nhất
@@ -76,7 +78,7 @@
             $user_id = $_SESSION['user']['id'];
             // Validate dữ liệu đầu vào
             if (empty($data['repoName'])) {
-                return ["status" => "error", "message" => "Thiếu tên repo."];
+                return ["status" => "error", "message" => "Missing repo name."];
             }
             //Lấy id repo vừa thêm
             $repo_id = $this->repoRepo->insertNewRepo($user_id,$data['repoName'],$data['branch'] ?? '',$data['repo_url'] ?? '');

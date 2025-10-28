@@ -1,7 +1,16 @@
 <link rel="stylesheet" href="../../assets/css/settingelem.css">
+
 <div class="account-container">
     <div class="top-side">
         <div class="show-id">ID: <?= htmlspecialchars($user->getId()) ?></div>
+    </div>
+    <div class="avatar-container">
+        <div style="position: relative;">
+            <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="user-avt" id="userAvatar">
+            <div class="change-avt" id="changeAvtBtn">Change Avatar</div>
+            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+        </div>
+        <button id="saveAvtBtn">Save</button>
     </div>
     <div class="basic-content">
         <form id="account-form" method="POST">
@@ -63,16 +72,17 @@
                 <button id="save-btn" type="submit">Save</button>
             </div>
         </form>
-        
      </div>
 
     
-    <div class="adv-btn" id="adv-btn1">Advantage >></div>
-    <div class="adv-btn" id="adv-btn2" style="display: none;">Less <<</div>
+    <div class="adv-btn" id="adv-btn1" style="margin-top:10px">Advantage >></div>
+    <div class="adv-btn" id="adv-btn2" style="display: none;margin-top:10px">Less <<</div>
     <div class="adv-content" id="adv-content" style="display:none;">
-        <div class="row-content">
-            <div class="left-input" style="cursor: pointer;text-align: center;">
-               Change password
-            </div>
-    </div>    
+    <div class="row-content">
+        <div class="left-input" style="cursor: pointer;text-align: center;">
+            Change password
+        </div>
+    </div> 
+    <div><?php include('../components/change-pass.php') ?></div>   
 </div>
+

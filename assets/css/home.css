@@ -7,7 +7,7 @@ main {
     justify-content: space-between; /* chia 2 cột */
     gap: 20px; /* khoảng cách giữa feeds và news */
     padding-top: 10px;
-    height: calc(100vh - 60px); /* toàn màn hình trừ header */
+    height: calc(100vh - 65px); /* toàn màn hình trừ header */
 }
 
 /* feeds bên trái */

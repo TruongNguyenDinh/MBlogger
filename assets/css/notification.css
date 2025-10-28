@@ -1,0 +1,179 @@
+/* Khung chứa tất cả thông báo lỗi */
+#notification-area {
+  position: fixed;           /* thoát layout cha, cố định theo viewport */
+  top: 20px;                 /* cách mép trên 20px */
+  right: 20px;               /* cách mép phải 20px */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;     /* các thẻ con căn phải */
+  gap: 10px;                 /* khoảng cách giữa các thông báo */
+  z-index: 9999;             /* nổi trên tất cả các phần tử khác */
+  pointer-events: none;      /* không chặn thao tác với phần tử phía dưới */
+}
+
+/* Thẻ thông báo lỗi */
+.error-form {
+  background: linear-gradient(135deg, #7b6ecf, #a2a2f7);
+  color: white;
+  border-radius: 12px;
+  padding: 14px 20px;
+  width: 300px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  pointer-events: auto;      /* cho phép click nếu cần (VD: nút tắt) */
+  animation: slideIn 0.35s ease-out;
+  transition: all 0.4s ease;
+}
+
+/* Header (icon + chữ “Lỗi”) */
+.error-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.error-header .icon i {
+  color: #ffd3d3;
+  font-size: 18px;
+}
+
+/* Nội dung thông báo */
+.error-content {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Thanh thời gian chạy dưới */
+.error-timeline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: rgba(255,255,255,0.3);
+  animation: timelineShrink 4s linear forwards;
+}
+
+/* Hiệu ứng hiện */
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Hiệu ứng thu thanh timeline */
+@keyframes timelineShrink {
+  from { width: 100%; }
+  to { width: 0; }
+}
+/* Thẻ thông báo nổi */
+
+/* ===== NỀN MỜ PHÍA SAU POPUP ===== */
+.nf-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5); /* mờ nền */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* luôn nổi trên */
+}
+
+/* ===== CONTAINER POPUP ===== */
+.nf-container {
+  background-color: #fff;
+  border-radius: 16px; /* bo góc */
+  width: 380px;
+  max-width: 90%;
+  padding: 24px 20px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* bóng nhẹ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  animation: popupFade 0.3s ease-out;
+}
+
+/* ===== TOP ===== */
+.nf-top-side_title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a73e8;
+  margin-bottom: 8px;
+}
+
+.nf-top-side_intro {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* ===== BUTTONS ===== */
+.nf-below-side {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.nf-login a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 24px;
+  background-color: #1a73e8;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.2s all;
+}
+
+.nf-login a:hover {
+  background-color: #1669c1;
+}
+
+.nf-cancel {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #eee;
+  color: #333;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.nf-cancel:hover {
+  background-color: #ddd;
+}
+
+/* ===== FOOTER ===== */
+.nf-footer a {
+  font-size: 14px;
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.nf-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes popupFade {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

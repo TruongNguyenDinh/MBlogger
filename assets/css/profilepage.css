@@ -20,7 +20,7 @@ html, body {
 .pro-left-side {
     flex: 1;
     max-width: 250px;
-    height: calc(100vh - 20px);
+    height: calc(100vh - 10px);
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 8px 8px 300px 0;
@@ -36,8 +36,8 @@ html, body {
     padding: 15px;
     background: #fff;
     overflow-y: auto;
-    overflow-x: hidden; /* không cho*
-
+    overflow-x: hidden; /* không cho*/
+}
 .pro-container {
     display: flex; /* đặt 2 div con nằm cạnh nhau */
     gap: 20px; /* khoảng cách giữa 2 cột */

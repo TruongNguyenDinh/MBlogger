@@ -16,7 +16,7 @@ const editBtn = document.getElementById("edit-btn");
 const saveBtn = document.getElementById("save-btn");
 const inputs = document.querySelectorAll(".basic-content input, .basic-content select");
 
-// 🔒 Khóa tất cả ô khi load trang
+// Khóa tất cả ô khi load trang
 window.addEventListener("DOMContentLoaded", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   saveBtn.disabled = true;
 });
 
-// ✏️ Khi nhấn "Edit" → mở khóa
+// Khi nhấn "Edit" → mở khóa
 editBtn.addEventListener("click", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -44,7 +44,7 @@ editBtn.addEventListener("click", () => {
   saveBtn.disabled = false;
 });
 
-// 💾 Khi nhấn "Save" → khóa lại
+// Khi nhấn "Save" → khóa lại
 saveBtn.addEventListener("click", () => {
   inputs.forEach(el => {
     if (el.tagName === "SELECT") {
@@ -65,14 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 
-  // ✅ Khi click vào input → hiện dropdown
+  // Khi click vào input → hiện dropdown
   input.addEventListener("click", (e) => {
     e.stopPropagation(); // tránh bị đóng ngay
     optionsBox.style.display =
       optionsBox.style.display === "block" ? "none" : "block";
   });
 
-  // ✅ Khi chọn một option → ghi vào input
+  // Khi chọn một option → ghi vào input
   optionsBox.querySelectorAll("div").forEach(opt => {
     opt.addEventListener("click", () => {
       input.value = opt.dataset.value;
@@ -80,14 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Ẩn dropdown khi click ra ngoài
+  //  Ẩn dropdown khi click ra ngoài
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".role-select")) {
       optionsBox.style.display = "none";
     }
   });
 
-  // ✅ Khi nhấn Save → AJAX lưu
+  // Khi nhấn Save → AJAX lưu
   saveBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -119,10 +119,70 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((err) => {
         console.error("❌ Fetch error:", err);
-        alert("Có lỗi xảy ra khi gửi dữ liệu!");
+        alert("An error occurred while sending data!");
       });
   });
 });
+//thay đổi ảnh đại diện
+document.addEventListener("DOMContentLoaded", function() {
+    const changeAvtBtn = document.getElementById("changeAvtBtn");
+    const avatarInput = document.getElementById("avatarInput");
+    const userAvatar = document.getElementById("userAvatar");
+    const saveAvtBtn = document.getElementById("saveAvtBtn");
+
+    let selectedFile = null;
+
+    // Khi bấm Change Avatar → chọn file
+    changeAvtBtn.addEventListener("click", () => {
+        avatarInput.click();
+    });
+
+    // Khi chọn file → xem trước + bật nút Save
+    avatarInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            selectedFile = file;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                userAvatar.src = e.target.result;
+                saveAvtBtn.style.display = "inline-block"; // ⚡ hiện nút Save
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    console.log('SaveBtn:', document.getElementById("saveAvtBtn"));
+
+
+    // Khi nhấn Save → gửi tên file lên PHP
+    saveAvtBtn.addEventListener("click", () => {
+      if (!selectedFile) return;
+
+      const formData = new FormData();
+      formData.append("avatar", selectedFile);
+
+      fetch("../../api/setAvatar.php", {
+          method: "POST",
+          body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          if (data.success) {
+              alert("✅ Avatar updated successfully!");
+              saveAvtBtn.style.display = "none";
+          } else {
+              alert("❌ " + (data.message || "Upload failed"));
+          }
+      })
+      .catch(err => console.error(err));
+  });
+
+});
+
+
+
+
 
 
 

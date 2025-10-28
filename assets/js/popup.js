@@ -7,7 +7,7 @@ const textarea = document.getElementById("wcomment");
 const hiddenInput = fcp.querySelector("input[name='article_id']");
 // Lưu URL ban đầu để khi đóng popup có thể trả về
 let originalUrl = window.location.origin + window.location.pathname; // luôn là URL gốc
-// ✅ Thêm đoạn này để tự mở popup nếu có query-articleID trên URL
+//  Đoạn này tự mở popup nếu có query-articleID trên URL
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const articleId = params.get("query-articleID");
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (comment) comment.click(); // Gọi sự kiện click như người dùng bấm
     }
 });
-// ✅ Hết phần thêm
+// End
 comments.forEach(comment => {
     comment.addEventListener("click", () => {
     const articleId = comment.dataset.id;
@@ -67,7 +67,7 @@ fcp.addEventListener("click", (e) => {
     }
 });
 
-// 🟢 Thêm ngay dưới đoạn trên (AJAX gửi comment)
+// Thêm ngay dưới đoạn trên (AJAX gửi comment)
 const fcpForm = document.querySelector(".fcp-wcomment form");
 const fcpTextarea = document.getElementById("wcomment");
 
@@ -85,7 +85,7 @@ fcpForm.addEventListener("submit", (e) => {
   formData.append("article_id", articleId);
   formData.append("wcomment", content);
 
-  // 📨 Gửi bình luận bằng AJAX
+  //  Gửi bình luận bằng AJAX
   fetch(`../../controls/commentcontroller.php`, {
     method: "POST",
     body: formData
@@ -98,7 +98,7 @@ fcpForm.addEventListener("submit", (e) => {
   .then(html => {
     fcpComment.innerHTML = html;
     fcpTextarea.value = ""; // reset input
-        // 🔢 Cập nhật số comment ngoài danh sách
+        //  Cập nhật số comment ngoài danh sách
     const commentDiv = document.querySelector(`.article-comment[data-id='${articleId}']`);
     if (commentDiv) {
         // Lấy số hiện tại trong text, ví dụ "Comment: 3"

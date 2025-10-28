@@ -8,7 +8,24 @@
         </div>
         <div class="source-repo">Repo: <?php echo ($article["repo"]); ?></div>
         <div class="source-branch">Branch: <?php echo ($article["branch"]); ?></div>
-        <div class="btn-open"><a href="">Open</a></div>
+        <?php
+        $content = trim($article["content"] ?? '');
+
+        // Kiểm tra xem có phải URL hợp lệ và có chứa 'github.com' + 'README.md' hay không
+        $isReadmeLink = (
+            filter_var($content, FILTER_VALIDATE_URL) &&
+            str_contains($content, 'github.com') &&
+            str_ends_with(strtolower($content), 'readme.md')
+        );
+        ?>
+
+        <?php if ($isReadmeLink): ?>
+            <div class="btn-open">
+                <a href="<?php echo htmlspecialchars($content); ?>" target="_blank">Open</a>
+            </div>
+        <?php endif; ?>
+
+
         <div class="article-id">ID: <?php echo $article["id"]; ?></div>
     </div>
     <div class="article-title">

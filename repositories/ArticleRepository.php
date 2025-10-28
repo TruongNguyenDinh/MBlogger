@@ -31,7 +31,7 @@
 
 
     // World
-    public function findLatestArticles(int $limit = 10) {
+    public function findLatestArticles(int $limit = 10):array {
         $stmt = $this->conn->prepare("
             SELECT * 
             FROM articles 

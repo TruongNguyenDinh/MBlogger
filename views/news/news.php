@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header("Content-Type: text/html; charset=UTF-8");
     require_once __DIR__ .'/../../controls/newscontroller.php';
     $controller = new Newscontroller();
@@ -34,12 +35,14 @@
             <button id="backBtn_re">⬅ Back</button>
             <?php include("../components/recruitment.php") ?>
         </div>
-        <div class="news-scene_more">
-            <div class="news-scene_more_toglebtn" id = "more-btn">More</div>
-            <div class="group_btns" style="display: none;">
-                <div class="recruitment" id ="recruitment-btn">Recruitment</div>
+        <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] !== 'person'): ?>
+            <div class="news-scene_more">
+                <div class="news-scene_more_toglebtn" id="more-btn">More</div>
+                <div class="group_btns" style="display: none;">
+                    <div class="recruitment" id="recruitment-btn">Recruitment</div>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </main>
     <script src="../../assets/js/news.js"></script>
     <script src="../../assets/js/redirect.js"></script>

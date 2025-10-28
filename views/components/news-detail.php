@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // ✅ Bắt buộc đặt ở đầu file, trước mọi output
 header('Content-Type: application/json; charset=UTF-8');
 mb_internal_encoding("UTF-8");

@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__.'/../config/db.php';
 require_once __DIR__.'/ArticleService.php';
 require_once __DIR__.'/UserService.php';
@@ -25,18 +28,29 @@ $userResult = [];
 if ($query !== '') {
     if (is_numeric($query)) {
         $news = $newsService->getNewsService($query);
-        if ($news) $newsResult[] = $news['title'];
+        if ($news) {
+            $newsResult[] = [
+                'id' => $news['id'] ?? $query,
+                'title' => $news['title']
+            ];
+        }
 
         $article = $articleService->findArticleById($query);
-        if ($article) $articleResult[] = $article['title'];
+        if ($article) {
+            $articleResult[] = [
+                'id' => $article['id'] ?? $query,
+                'title' => $article['title']
+            ];
+        }
         
         $user = $userService->getUserById($query);
         if ($user) {
-        $userResult[] = [
-            'name' => $user->getName(),
-            'avatar' => $user->getUrl() // hoặc đúng tên getter trong class User
-        ];
-}
+            $userResult[] = [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'avatar' => $user->getUrl() // hoặc đúng getter avatar
+            ];
+        }
 
     } else {
         $tmp = strtolower($topicService->removeVietnameseAccentsString($query));
@@ -48,22 +62,37 @@ if ($query !== '') {
 
         foreach ($newIds as $newId) {
             $news = $newsService->getNewsService($newId);
-            if ($news) $newsResult[] = $news['title'];
+            if ($news) {
+                $newsResult[] = [
+                    'id' => $newId,
+                    'title' => $news['title']
+                ];
+            }
         }
 
         foreach ($articleIds as $articleId) {
             $article = $articleService->findArticleById($articleId);
-            if ($article) $articleResult[] = $article['title'];
+            if ($article) {
+                $articleResult[] = [
+                    'id' => $articleId,
+                    'title' => $article['title']
+                ];
+            }
         }
 
         foreach ($userIds as $userId) {
             $user = $userService->getUserById($userId);
-            if ($user) $userResult[] = $user->getName();
+            if ($user) {
+                $userResult[] = [
+                    'id' => $userId,
+                    'name' => $user->getName(),
+                    'avatar' => $user->getUrl()
+                ];
+            }
         }
     }
 }
 
-// Trả về JSON
 echo json_encode([
     'users' => $userResult,
     'articles' => $articleResult,

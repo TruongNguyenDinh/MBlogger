@@ -1,3 +1,6 @@
+<?php
+    require_once __DIR__ . "/../../config/auth.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
         <?php include __DIR__ . '/../header/header.php'; ?>
     </header>
     <main>
+        <?php include __DIR__ . '/../../notification/flex/notiflex.php'; ?>
         <div class="pro-container">
             <div class="pro-left-side">
                 <div class="pro-profile_user">
@@ -49,19 +53,25 @@
                 <div class="pro-github-profile">
                     <div class="pro-row">
                             <span class="label ">Github:</span>
-                            <span class="value gitname"><a href="#">Nguyen Dinh Truong</a></span>
+                            <span class="value gitname">
+                                <a 
+                                href="<?= $gitIf ? htmlspecialchars($gitIf->getLink()) : '#' ?>" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                >
+                                
+                                <?= $gitIf ? htmlspecialchars($gitIf->getGithubUsername()) : 'N/A' ?>
+                                </a>
+
+                            </span>
                     </div>
                     <div class="pro-row">
                         <span class="label">Repo:</span>
-                        <span class="value">10</span>
+                        <span class="value" id="repo-count">--</span>
                     </div>
                     <div class="pro-row">
                         <span class="label">Star:</span>
-                        <span class="value">5</span>
-                    </div>
-                    <div class="pro-row">
-                        <span class="label">Activity:</span>
-                        <span class="value">Regular</span>
+                        <span class="value" id="star-count">--</span>
                     </div>
                 </div>
                 <div class="pro-link_and_website">

@@ -169,3 +169,62 @@
   background: #f0f0f0;
 }
 
+/* Avatar Container */
+.avatar-container {
+    display: flex;
+    align-items: center; /* canh giữa theo chiều dọc */
+    gap: 15px; /* khoảng cách giữa ảnh và nút */
+    justify-content: center;
+    margin: 20px auto;
+}
+
+/* Ảnh đại diện */
+.avatar-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.avatar-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Lớp phủ "Change Avatar" */
+.change-avt {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.avatar-container:hover .change-avt {
+    opacity: 1;
+}
+
+/* Nút Save */
+#saveAvtBtn {
+    display: none; /* ẩn mặc định */
+    padding: 10px 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#saveAvtBtn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
