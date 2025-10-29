@@ -24,10 +24,8 @@ session_start(); // 💡 Quan trọng — phải có trước khi dùng $_SESSIO
 
     <header>
         <div class="menu">
-            <h1>MBlogger</h1>
+            <h1><a href="http://localhost/mblogger">MBlogger</a></h1>
             <ul>
-                <li><a href="#">info</a></li>
-                <li><a href="#">about us</a></li>
                 <li><a href="#">support</a></li>
                 <li id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></li>
             </ul>
@@ -46,7 +44,6 @@ session_start(); // 💡 Quan trọng — phải có trước khi dùng $_SESSIO
             header("Location: " . $_SERVER['PHP_SELF'] . "?page=login");
             exit();
         }
-
         // Gán giá trị mặc định an toàn cho biến
         $url = $_GET['url'] ?? '';
         $page = $_GET['page'] ?? 'login';
@@ -58,8 +55,12 @@ session_start(); // 💡 Quan trọng — phải có trước khi dùng $_SESSIO
 
                 <?php if ($page === "login"): ?>
                     <span class="greeting" id="hi">Hi, my friend!</span>
-                <?php else: ?>
+                <?php elseif($page==='register'): ?>
                     <span class="greeting" id="welcome">Welcome</span>
+                <?php elseif($page==='resetpassword'): ?>
+                    <span class="greeting" id="reset">Last step</span>
+                <?php else: ?>
+                    <span class="greeting" id="fogot">Have a nice day</span>
                 <?php endif; ?>
             </div>
 
@@ -69,6 +70,10 @@ session_start(); // 💡 Quan trọng — phải có trước khi dùng $_SESSIO
                     include './login.php';
                 } elseif ($page === "register") {
                     include './register.php';
+                } elseif ($page=="fogotpassword"){
+                    include('./fogotpassword.php');
+                } elseif ($page=="resetpassword"){
+                    include('./resetpassword.php');
                 }
                 ?>
             </div>  

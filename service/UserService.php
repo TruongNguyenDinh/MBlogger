@@ -19,9 +19,12 @@ class UserService {
         }
         return ['success' => true, 'user' => $user];
     }
+    public function fisExistedEmail($email):User|null{
+        return $this->userRepo->isExistedEmail($email);
+    }
     public function checkRegister($username,$password,$email){
         $user = $this->userRepo->findByUsername($username);
-        $cemail = $this->userRepo->isExistedEmail($email);
+        $cemail = $this->fisExistedEmail($email);
         
         if($user){
             return ['success'=>false,'message'=>"Account already exists"];
@@ -85,7 +88,7 @@ class UserService {
     public function changeAvatar($id,$path){
         return $this->userRepo->changeAvater($id,$path);
     }
-    public function updatePassword($id,$newPass){
+    public function updatePassword($id,$newPass):mixed{
         return $this->userRepo->updatePassword($id,$newPass);
     }
 }

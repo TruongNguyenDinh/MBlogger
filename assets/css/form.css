@@ -54,46 +54,59 @@ h1{
     color:white;
     font-size: clamp(10px, 1.3vw, 35px);
 }
+/* Logo */
+h1 a {
+    color: inherit;           /* kế thừa màu chữ của h1 */
+    text-decoration: none;    /* bỏ gạch chân */
+    font: inherit;            /* kế thừa font-size, font-family của h1 */
+    cursor: default;          /* con trỏ không hiện tay khi hover (tuỳ chọn) */
+}
+
 /* Input search */
 .search-group {
-  position: relative; /* để con absolute bám theo cha */
-  width: 250px;       /* cho gọn */
+  position: relative;
+  width: 250px;
 }
-.form_search {
-    display: none;
-    padding: 4px 8px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-}
-
-.form_search::placeholder {
-    color: #999;     
-}
-.form_search:hover,
-.form_search:focus {
-    border-color: #ff00f7;           /* đổi màu viền */
-    box-shadow: 0 0 20px rgba(249, 8, 229, 0.5); /* sáng viền */
-}
-/* Help seacher */
-
-.suggestions{
-    position: absolute;
-    border: 1px solid #ccc;
-    background: #fff;
-    width:auto;
-    display: none;
-    z-index: 1000;
-    border-radius: 10px;
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  display: none;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .suggestions div {
-  padding: 8px;
+  padding: 8px 10px;
   cursor: pointer;
 }
 .suggestions div:hover {
   background: #f0f0f0;
-  border-radius: 10px;
+}
+
+.form_search {
+  display: none; /* mặc định ẩn */
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.form_search.visible {
+  display: block; /* hiện khi toggle */
+}
+.form_search::placeholder {
+  color: #999;     
+}
+.form_search:hover,
+.form_search:focus {
+  border-color: #ff00f7;           
+  box-shadow: 0 0 10px rgba(249, 8, 229, 0.5); /* sáng viền */
 }
 /* End header */
 
